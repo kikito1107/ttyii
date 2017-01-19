@@ -1,0 +1,28 @@
+# phpstorm project files
+.idea
+
+source_frontend/.sass-cache
+source_frontend/node_modules
+runtime/*
+composer.lock
+.bowerrc
+web/assets/*
+web/index-test.php
+
+# composer itself is not needed
+composer.phar
+
+# Mac DS_Store Files
+.DS_Store
+
+# phpunit itself is not needed
+phpunit.phar
+
+# local phpunit config
+/phpunit.xml
+
+.git
+
+web/uploads/*
+
+vendor/messaging/shared/.git

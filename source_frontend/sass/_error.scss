@@ -1,0 +1,48 @@
+#error-box {
+  font-size:15px;
+  width:500px;
+  margin:35vh auto 0 auto;
+}
+
+#error-box .error-box-wrapper {
+  transform:translateY(-50%);
+  justify-content:center;
+  display:-webkit-flex;
+  display:-moz-flex;
+  display:-ms-flexbox;
+  display:-ms-flex;
+  display:flex;
+  -webkit-flex-flow:column;
+  -moz-flex-flow:column;
+  -ms-flex-flow:column;
+  flex-flow:column;
+  -webkit-align-items:center;
+  -moz-align-items:center;
+  -ms-align-items:center;
+  align-items:center;
+}
+
+.display-4, .display-4-inverse {
+  font-size:112px;
+  line-height:128px;
+  font-weight:300;
+  letter-spacing:-0.1px;
+}
+.display-4 {
+  color:rgba(0,0,0,0.54);
+}
+
+.display-2, .display-2-inverse {
+  font-size:45px;
+  line-height:48px;
+  font-weight:400;
+  letter-spacing:0;
+}
+
+.display-2 {
+  color:rgba(0,0,0,0.54);
+}
+
+.display-4, .display-3, .display-2, .display-1, .display-4-inverse, .display-3-inverse, .display-2-inverse, .display-1-inverse {
+  margin:20px 0 30px;
+}
