@@ -1,7 +1,10 @@
 <?php
 
 namespace app\models;
-
+use Yii;
+use Yii\db\ActiveRecord;
+//clase q extiende del ActiveRecord para el envio de mensajes
+//class User extends ActiveRecord
 class User extends \yii\base\Object implements \yii\web\IdentityInterface
 {
     public $id;
@@ -26,7 +29,15 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
             'accessToken' => '101-token',
         ],
     ];
+    public static function getDb()
+    {
+        return Yii::$app->db;
+    }
 
+    public static function tableName()
+    {
+        return 'users';
+    }
     /**
      * @inheritdoc
      */

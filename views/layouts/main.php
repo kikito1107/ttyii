@@ -158,6 +158,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                     <?php else: ?>
+                        <!--Layout de ADMIN-->
                         <li>administrador</li>
                         <li>
                             <a href="<?= Url::to(['/auth/profile/view']) ?>" class="ripple">
