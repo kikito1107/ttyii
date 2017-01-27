@@ -69,8 +69,19 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            //CODIGO DE DONDE SE VA A RECIBIR MENSAJES DE CLIENTES
+            'useFileTransport' => false,
+            'tansport' => [
+                'class' => 'swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'deftoner.javier@gmail.com',
+                'password' => 'weslimp1357911',
+                'port' => '587',
+                'encryption' => 'tls',
+            ]
+            //Yii:: $app ->mailer->compose( 'contact/html' , [ 'contactForm' => $form ]) ->setFrom( 'from@domain.com' ) ->setTo( $form ->email) ->setSubject( $form ->subject) ->send();
         ],
+        //MI CODIGO TERMINA AQUI
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

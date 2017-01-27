@@ -135,7 +135,7 @@ class Paciente extends \yii\db\ActiveRecord
         $this->nombre = rtrim($this->nombre);
 
         if(parent::beforeSave($insert)){
-            $now = date('Y-m-d H:i:s');
+            $now = date('Y-m-d');
 
             $date = Dates::convertSqlDate($this->cumple);
             $this->cumple = $date;
