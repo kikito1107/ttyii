@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use auth\components\User;
 use Yii;
 use app\models\Paciente;
 use app\models\PacienteSearch;
@@ -106,6 +107,19 @@ class PacienteController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionViewPaciente($id) {
+        return $this->render('view_paciente', [
+            'model' => $this->findModel($id),
+            'text' => 'Hola mundo'
+        ]);
+    }
+
+    public function actionProfile($id)
+    {
+        return $this->render('view-paciente', [
+            'model' => $this->findModel($id)
+        ]);
+    }
     /**
      * Finds the Paciente model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

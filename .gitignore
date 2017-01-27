@@ -30,7 +30,8 @@ runtime/*
 composer.lock
 web/assets/*
 web/index-test.php
-web/css/*
+web/css/site.css
+web/css/materialize.css
 /web/js/*
 
 /source_frontend/.sass-cache

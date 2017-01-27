@@ -66,6 +66,11 @@ class Paciente extends \yii\db\ActiveRecord
     const STATUS_ACTIVE = 1;
 
     /**
+     * @var UploadedFile $imageLicense
+     */
+    public $imagePhoto;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -251,5 +256,24 @@ class Paciente extends \yii\db\ActiveRecord
     public function getFullName()
     {
         return "{$this->nombre} {$this->paterno} {$this->materno}";
+    }
+
+    /**
+     * Sube un archivo al servidor
+     * @param $image
+     * @param $attribute
+     */
+    public function upload($image, $attribute)
+    {
+        if(isset($this->{$attribute})) {
+            $path = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'uploads/image' . DIRECTORY_SEPARATOR . $this->{$attribute};
+            if(file_exists($path)){
+                unlink('uploads/image/' . $this->{$attribute});
+            }
+        }
+
+        $filename = md5(time() . $this->{$image}->baseName) . '.' . $this->{$image}->extension;
+        $this->{$image}->saveAs('uploads/image/' . $filename);
+        $this->{$attribute} = $filename;
     }
 }

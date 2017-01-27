@@ -1,6 +1,7 @@
 <?php
 
 use kartik\date\DatePicker;
+use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -10,13 +11,24 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="paciente-form">
     <?php $form = ActiveForm::begin(); ?>
+    <?php if(isset($model->password)): ?> <span ng-init='name = "<?= $model->password?>"'></span> <?php endif; ?>
+    <span ng-init='name = "confirmPassword"'></span>
 
     <div class="panel panel-primary col-md-10">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-3">
                     <h4>Registro</h4>
+                    <div>
                     <img src="/img/registro.jpg" alt="imagen de registro" class="img-rounded">
+                    <?= $form->field($model, 'imagePhoto')->widget(FileInput::className(), [
+                        'options' => ['accept' => 'image/*','ng-required' => 'user_type == 3'],
+                        'pluginOptions' => [
+                            'showRemove' => false,
+                            'showUpload' => false
+                        ]
+                    ]) ?>
+                    </div>
                 </div>
                 <div class="col-md-offset-2 col-md-6">
                     <div class="row">
@@ -65,13 +77,13 @@ use yii\widgets\ActiveForm;
                             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
                         </div>
                         <div class="col-md-4">
-                            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true,'ng-model' => 'password']) ?>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group field-paciente-password required has-error">
-                                <label class="control-label" for="paciente-password-confirm">Confirmar contraseña</label>
-                                <input type="password" id="paciente-password-confirm" class="form-control" maxlength="15">
-                                <div class="help-block">Las contraseñas no coinciden.</div>
+                            <div class="form-group field-paciente-password" ng-class="{'required has-error':password != confirmPassword }">
+                                <label class="control-la bel" for="paciente-password-confirm">Confirmar contraseña</label>
+                                <input type="password" id="paciente-password-confirm" class="form-control" maxlength="15" ng-model="confirmPassword" required>
+                                <div class="help-block" ng-show="password != confirmPassword">Las contraseñas no coinciden.</div>
                             </div>
                         </div>
                     </div>
@@ -79,7 +91,9 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="row text-center">
                 <div class="form-group">
-                    <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Registrarse') : Yii::t('app', 'Actualizar registro'), ['class' => $model->isNewRecord ? 'btn btn-success btn-lg' : 'btn btn-primary']) ?>
+                    <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Registrarse') : Yii::t('app', 'Actualizar registro'), [
+                        'class' => $model->isNewRecord ? 'btn btn-success btn-lg' : 'btn btn-primary',
+                        'ng-disabled' => 'password != confirmPassword ']) ?>
                 </div>
             </div>
         </div>

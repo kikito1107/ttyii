@@ -45,6 +45,7 @@ AppAsset::register($this);
                 </li>
             </ul>
             <h2 class="header-title"><?= Yii::t('app', 'Sistema Homeopático') ?></h2>
+            <?php if(!\Yii::$app->user->isGuest): ?>
             <ul class="pull-right">
                 <li uib-dropdown class="dropdown">
                     <a uib-dropdown-toggle href="javascript:void(0);" class="dropdown-toggle ripple" aria-haspopup="true" aria-expanded="false">
@@ -70,6 +71,7 @@ AppAsset::register($this);
                     </ul>
                 </li>
             </ul>
+            <?php endif; ?>
         </nav>
     </header>
     <?php if(!\Yii::$app->user->isGuest) {
@@ -92,7 +94,7 @@ AppAsset::register($this);
                         <?php $paciente = Paciente::find()->where(['user_id' =>$id])->one();?>
                         <li>paciente</li>
                         <li>
-                            <a href="<?= Url::to(['/paciente/update', 'id' => $paciente->id]) ?>" class="ripple">
+                            <a href="<?= Url::to(['/paciente/profile', 'id' => $paciente->id]) ?>" class="ripple">
                                 <em class="fa fa-user-md"></em>
                                 <span><?= Yii::t('app', 'Perfil') ?></span>
                                 <span class="md-ripple"></span>
@@ -195,8 +197,6 @@ AppAsset::register($this);
                             </a>
                         </li>
                     <?php endif; ?>
-<!--                    --><?//= Paciente::findOne(\Yii::$app->user->getId())->user_type?>
-
                 </ul>
             </nav>
         </div>
