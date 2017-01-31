@@ -2,17 +2,18 @@
 
 namespace app\controllers;
 
+use app\models\Paciente;
 use Yii;
-use app\models\Medico;
-use app\models\MedicoSearch;
+use app\models\Citas;
+use app\models\CitasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MedicoController implements the CRUD actions for Medico model.
+ * CitaController implements the CRUD actions for Citas model.
  */
-class MedicoController extends Controller
+class CitaController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,57 +31,60 @@ class MedicoController extends Controller
     }
 
     /**
-     * Lists all Medico models.
+     * Lists all Citas models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MedicoSearch();
+        $searchModel = new CitasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $id = \Yii::$app->user->id;
+        $paciente = Paciente::find()->where(['user_id' => $id])->one();
+        $cita = Citas::find()->where(['paciente_id' => $paciente->id])
+            ->where(['status' => Citas::STATUS_PENDING])
+            ->one();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            /**'frase' => [
-                'uno' => 1,
-                'dos' => 2,
-                'tres' => 3
-            ]**/
+            'model' => $cita
         ]);
     }
 
     /**
-     * Displays a single Medico model.
+     * Displays a single Citas model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id)
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Medico model.
+     * Creates a new Citas model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
-        $model = new Medico();
+        var_dump($id);
+        $model = new Citas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'id' => $id,
             ]);
         }
     }
 
     /**
-     * Updates an existing Medico model.
+     * Updates an existing Citas model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,7 +103,7 @@ class MedicoController extends Controller
     }
 
     /**
-     * Deletes an existing Medico model.
+     * Deletes an existing Citas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,15 +116,15 @@ class MedicoController extends Controller
     }
 
     /**
-     * Finds the Medico model based on its primary key value.
+     * Finds the Citas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Medico the loaded model
+     * @return Citas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Medico::findOne($id)) !== null) {
+        if (($model = Citas::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

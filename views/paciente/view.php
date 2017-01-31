@@ -15,15 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card-heading bg-primary">
             <h4 class="m0 text-capitalize">
                 <?= Html::encode($this->title) ?>
-                <!--            --><?//= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar'), ['create'], ['class' => 'pull-right btn btn-danger']) ?>
-                <!--        --><?//= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <!--            //= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar'), ['create'], ['class' => 'pull-right btn btn-danger']) -->
+                <!--        //= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>-->
                 <?php if($model->status == 1): ?>
                     <?= Html::a(Yii::t('app', '<em class="fa fa-times"></em> Desactivar'), ['activate', 'id' => $model->id, 'status' => false], [
                         'data' => [
                             'confirm' => Yii::t('app', '¿Está seguro de que desea desactivar este elemento?'),
                             'method' => 'post',
                         ],
-                        'class'=>'pull-right btn btn-danger'
+                        'class'=>'pull-right btn btn-danger',
                     ]) ?>
                 <?php else: ?>
                     <?= Html::a(Yii::t('app', '<em class="fa fa-check"></em> Activar'), ['activate', 'id' => $model->id, 'status' => true], [

@@ -136,6 +136,7 @@ class Paciente extends \yii\db\ActiveRecord
             $this->cumple = $date;
             $this->create_date = $now;
             $this->status = 1;
+
             $this->user_type = 3;
             if ($this->isNewRecord) {
                 $_userId = $this->registerUser();
