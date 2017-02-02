@@ -9,46 +9,45 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Listado de médicos');
-
+/**var_dump(sizeof($frase))**/
 ?>
 <div class="medico-index">
         <h4 class="m0 text-capitalize">
             <?= Html::encode($this->title) ?>
-            <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar nueva cuenta'), ['create'], ['class' => 'pull-right btn btn-danger']) ?>
+            <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar nueva cuenta'), ['create', 'id' =>1, 'username'=>'dd'], ['class' => 'pull-right btn btn-danger']) ?>
         </h4>
         </div>
-        <!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
         <div class="card-body white">
             <p>
             </p>
             <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-//        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-//            'id',
-//            'user_id',
-            'nombre',
-            // 'paterno',
-            // 'materno',
-            // 'genero',
-            // 'cumple',
-            // 'direccion',
-             'telefono',
-             'celular',
-            'email:email',
-            // 'password',
-            // 'image_Photo',
-            // 'status',
-            // 'user_type',
-            // 'update_date',
-            // 'create_date',
-             'cedula',
-            // 'escuela',
-             'especialidad',
-            // 'descripcion:ntext',
-
-            ['class' => 'yii\grid\ActionColumn',
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    //'id',
+                    //'user_id',
+                    'nombre',
+                    'paterno',
+                    'materno',
+                    //'genero',
+                    'cumple',
+                    //'direccion',
+                    'telefono',
+                    'celular',
+                    'email:email',
+                    //'password',
+                    //'image_Photo',
+                    //'status',
+                    //'user_type',
+                    //'update_date',
+                    //'create_date',
+                    'cedula',
+                    //'escuela',
+                    'especialidad',
+                    //'descripcion:ntext',
+                ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {status}',
                 'buttons' => [
                     'view' => function ($url, $model) {

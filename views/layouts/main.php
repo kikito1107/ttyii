@@ -10,6 +10,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\citas;
 
 AppAsset::register($this);
 
@@ -90,8 +91,12 @@ AppAsset::register($this);
             <nav class="sidebar-nav">
                 <ul>
                     <?php $id = \Yii::$app->user->getId();?>
+
+<!-----------------------------------------------PACIENTE--------------------------------------------------->
+
                     <?php if(Paciente::find()->where(['user_id' => $id])->one() != null): ?>
                         <?php $paciente = Paciente::find()->where(['user_id' =>$id])->one();?>
+                        <!-- < ?php Cita::find()->where(['paciente_id' => $paciente->id])->one;?> -->
                         <li>paciente</li>
                         <li>
                             <a href="<?= Url::to(['/paciente/profile', 'id' => $paciente->id]) ?>" class="ripple">
@@ -101,7 +106,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li>
-                            <a href="<?= Url::to(['/citas']) ?>" class="ripple">
+                            <a href="<?= Url::to(['/cita']) ?>" class="ripple">
                                 <em class="fa fa-calendar"></em>
                                 <span><?= Yii::t('app', 'Gestión de citas') ?></span>
                                 <span class="md-ripple"></span>
@@ -121,6 +126,7 @@ AppAsset::register($this);
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
+<!-----------------------------------MEDICO---------------------------------------------------------------------------->
                     <?php elseif (Medico::find()->where(['user_id' =>$id])->one() != null): ?>
                         <?php $medico = Medico::find()->where(['user_id' =>$id])->one();?>
                         <li>médico</li>
@@ -160,6 +166,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                     <?php else: ?>
+<!----------------------------------------------------ADMIN---------------------------------------------------->
                         <!--Layout de ADMIN-->
                         <li>administrador</li>
                         <li>
@@ -198,6 +205,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                     <?php endif; ?>
+                <!--<? //= Paciente::findOne(\Yii::$app->user->getId())->user_type ?> -->
                 </ul>
             </nav>
         </div>

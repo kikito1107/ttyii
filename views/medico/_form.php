@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin(); ?>
 
-<!--    --><?//= $form->field($model, 'user_id')->textInput() ?>
+<!--//= $form->field($model, 'user_id')->textInput() ?>-->
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
@@ -25,46 +25,4 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 <?php ActiveForm::end(); ?>
-
-
-
-
-<!--    --><?//= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'paterno')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'materno')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'genero')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'cumple')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'celular')->textInput(['maxlength' => true]) ?>
-
-
-
-<!--    --><?//= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'image_Photo')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'status')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'user_type')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'update_date')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'create_date')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'cedula')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'escuela')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'especialidad')->textInput(['maxlength' => true]) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
-
 

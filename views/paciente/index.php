@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-heading bg-primary">
         <h4 class="m0 text-capitalize">
             <?= Html::encode($this->title) ?>
-<!--            --><?//= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar'), ['create'], ['class' => 'pull-right btn btn-danger']) ?>
+<!--            //= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar'), ['create'], ['class' => 'pull-right btn btn-danger']) --x>
         </h4>
     </div>
     <div class="card-body">
