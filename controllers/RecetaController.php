@@ -18,7 +18,7 @@ class RecetaController extends \yii\web\Controller
         $pdf = new Pdf([
             'mode' => Pdf::MODE_UTF8,
             // A4 paper format
-            'format' => Pdf::FORMAT_A4,
+            'format' => Pdf::FORMAT_LETTER,
             // portrait orientation
             'orientation' => Pdf::ORIENT_PORTRAIT,
             // stream to browser inline
