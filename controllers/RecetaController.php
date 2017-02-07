@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Paciente;
 use kartik\mpdf\Pdf;
 
 class RecetaController extends \yii\web\Controller
@@ -13,12 +14,13 @@ class RecetaController extends \yii\web\Controller
 
     public function actionPdf($id)
     {
-        $content = $this->renderPartial('_reportView');
+        $paciente = Paciente::find()->where(['id' => $id])->one();
+        $content = $this->renderPartial('_reportView', ['paciente' => $paciente]);
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_UTF8,
             // A4 paper format
-            'format' => Pdf::FORMAT_LETTER,
+            'format' => Pdf::FORMAT_A4,
             // portrait orientation
             'orientation' => Pdf::ORIENT_PORTRAIT,
             // stream to browser inline
