@@ -70,16 +70,15 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             //CODIGO DE DONDE SE VA A RECIBIR MENSAJES DE CLIENTES
-            //'useFileTransport' => false,
-            //'tansport' => [
-            //    'class' => 'swift_SmtpTransport',
-            //    'host' => 'smtp.gmail.com',
-            //    'username' => 'deftoner.javier@gmail.com',
-            //    'password' => 'weslimp1357911',
-
-            //    'port' => '587',
-            //    'encryption' => 'tls',
-            //]
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'kikito110792@gmail.com',
+                'password' => 'abdba91843',
+                'port' => '587',
+                'encryption' => 'tls',
+            ]
             //Yii:: $app ->mailer->compose( 'contact/html' , [ 'contactForm' => $form ]) ->setFrom( 'from@domain.com' ) ->setTo( $form ->email) ->setSubject( $form ->subject) ->send();
         ],
         //MI CODIGO TERMINA AQUI

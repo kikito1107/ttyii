@@ -20,7 +20,7 @@ class m170130_025248_historial extends Migration
 
         ], 'ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1');
         $this->addForeignKey('{{%citas_ibfk_1}}' , '{{%historial}}' , 'tratamientos_id' , '{{%tratamientos}}' , 'id' );
-        $this->addForeignKey('{{%citas_ibfk_2}}' , '{{%historial}}' , 'sitnomas_id' , '{{%sintomas}}' , 'id' );
+        $this->addForeignKey('{{%citas_ibfk_2}}' , '{{%historial}}' , 'sintomas_id' , '{{%sintoma}}' , 'id' );
         $this->addForeignKey('{{%citas_ibfk_3}}' , '{{%historial}}' , 'medicamentos_id' , '{{%medicamentos}}' , 'id' );
         $this->addForeignKey('{{%citas_ibfk_4}}' , '{{%historial}}' , 'medico_id' , '{{%medico}}' , 'id' );
         $this->addForeignKey('{{%citas_ibfk_5}}' , '{{%historial}}' , 'paciente_id' , '{{%paciente}}' , 'id' );

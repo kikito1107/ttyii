@@ -136,16 +136,25 @@ class Paciente extends \yii\db\ActiveRecord
 
         if(parent::beforeSave($insert)){
             $now = date('Y-m-d');
-
-            $date = Dates::convertSqlDate($this->cumple);
-            $this->cumple = $date;
-            $this->create_date = $now;
-            $this->status = 1;
-
-            $this->user_type = 3;
             if ($this->isNewRecord) {
+                $date = Dates::convertSqlDate($this->cumple);
+                $this->cumple = $date;
+                $this->create_date = $now;
+                $this->status = $this::STATUS_INACTIVE;
+                $this->user_type = 3;
                 $_userId = $this->registerUser();
                 $this->setAttribute('user_id', $_userId);
+
+//                Yii::$app->mailer->compose('@app/mail/layouts/html', ['content' => [
+//                    'fullname' => $this->getFullName(),
+//                    'user_id' => $_userId,
+//                    'email' => $this->email
+//                ]])
+//                    ->setFrom('kikito110792@gmail.com')
+//                    ->setTo($this->email)
+//                    ->setSubject('Confirmación de la cuenta')
+//                    ->send();
+
             }else{
                 $this->update_date = $now;
             }
@@ -165,17 +174,15 @@ class Paciente extends \yii\db\ActiveRecord
         $user = new User();
         $user->username = $this->email;
         $user->email = $this->email;
-        $user->setPassword('123456');
+        $user->setPassword($this->password);
         $user->generateAuthKey();
-        $user->status = $this::STATUS_ACTIVE;
-
+        $user->status = 1;
         if($user->save()) {
             $auth = Yii::$app->authManager;
             $role = $auth->getRole($this->getUserRole());
             $auth->assign($role, $user->id);
             return $user->id;
         }
-
         return false;
     }
 

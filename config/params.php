@@ -2,7 +2,7 @@
 
 return [
     //CODIGO A DONDE SE ENVIARAN LOS EMAILS, AGREGE INF
-    'adminEmail' => 'deftoner.javier@gmail',
+    'adminEmail' => 'kikito110792@gmail.com',
     'title' => 'Aplicación Sistema Homeopático',
     //CONTRASEÑA Q SE CIFRA O SE DEBE DE CIFRAR CON LA DEL CLIENTE
     'salt' => 'qwerty',

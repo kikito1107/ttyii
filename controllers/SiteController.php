@@ -1,90 +1,14 @@
 <?php
 
 namespace app\controllers;
-
-use auth\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use yii\web\Session;
-use app\models\FormRegister;
-use app\models\Users;
 
 class SiteController extends Controller
 {
-    private function randKey($str='', $long=0)
-    {
-        $key = null;
-        $str = str_split($str);
-        $start = 0;
-        $limit = count($str)-1;
-        for($x=0; $x<$long; $x++)
-        {
-            $key .= $str[rand($start, $limit)];
-        }
-        return $key;
-    }
 
-    public function actionConfirm()
-    {
-        ////AQUI VA EL CODIGO DEL CORREO Q SE LE ENVIA AL PACIENTE CUANDO SE REGISTRA
-        $table = new Users;
-        if (Yii::$app->request->get())
-        {
-
-            //Obtenemos el valor de los parámetros get
-            $id = Html::encode($_GET["id"]);
-            $authKey = $_GET["authKey"];
-
-            if ((int) $id)
-            {
-                //Realizamos la consulta para obtener el registro
-                $model = $table
-                    ->find()
-                    ->where("id=:id", [":id" => $id])
-                    ->andWhere("authKey=:authKey", [":authKey" => $authKey]);
-
-                //Si el registro existe
-                if ($model->count() == 1)
-                {
-                    $activar = Users::findOne($id);
-                    $activar->activate = 1;
-                    if ($activar->update())
-                    {
-                        echo "Enhorabuena registro llevado a cabo correctamente, redireccionando ...";
-                        echo "<meta http-equiv='refresh' content='8; ".Url::toRoute("site/login")."'>";
-                    }
-                    else
-                    {
-                        echo "Ha ocurrido un error al realizar el registro, redireccionando ...";
-                        echo "<meta http-equiv='refresh' content='8; ".Url::toRoute("site/login")."'>";
-                    }
-                }
-                else //Si no existe redireccionamos a login
-                {
-                    return $this->redirect(["site/login"]);
-                }
-            }
-            else //Si id no es un número entero redireccionamos a login
-            {
-                return $this->redirect(["site/login"]);
-            }
-        }
-    }
-
-    public function actionRegister()
-    {
-
-    }
-
-
-
-////////////////////AQUI TERMINA
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function behaviors()
     {
         return [
@@ -201,8 +125,8 @@ class SiteController extends Controller
 //        ]);
 //    }
 //
-//    public function actionAbout()
-//    {
-//        return $this->render('about');
-//    }
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
 }

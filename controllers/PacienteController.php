@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Mail;
 use auth\components\User;
 use Yii;
 use app\models\Paciente;
@@ -67,7 +68,8 @@ class PacienteController extends Controller
         $model = new Paciente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            return $this->redirect(['register/send-mail']);
         } else {
             return $this->render('create', [
                 'model' => $model,
