@@ -266,6 +266,46 @@ class Paciente extends \yii\db\ActiveRecord
         return "{$this->nombre} {$this->paterno} {$this->materno}";
     }
 
+    public function getAnos()
+    {
+
+        //FUNCIONA SIN CONTAR LOS DIAS
+        $cumpleanos = $this->cumple;
+        $fecha = str_replace("/","-",$cumpleanos);
+        $fecha = date('Y/m/d',strtotime($fecha));
+        $hoy = date('Y/m/d');
+        $edad = ($hoy - $fecha);
+        return $edad;
+
+
+        /*///haciendo PRUEBA  con dias comparados
+        //FECHA ACTUAL
+        $hoydia=date("d");
+        $hoymes=date("m");
+        $hoyano=date("Y");
+
+        //FECHA DE USR
+        $fecha = $this->cumple;
+        $fecha = str_replace("/","-",$fecha);
+        $cumpleanos = date('Y/m/d',strtotime($fecha));
+
+        //si el mes es el mismo o mayor pero el día inferior aun no ha cumplido años, le quitaremos un año al actual
+        if (($month >= $hoymes) && ($day > $hoydia)) {
+            $hoyano=($hoyano-1);
+            $edad = $hoyano - $Year ;
+            echo $edad;
+        }
+        echo $fecha;
+
+        //Fomar elegante cuenta los dias
+        $fecha = $this->cumple;
+
+        list($Y,$m,$d) = str_replace("/","-",$fecha);
+        $fecha = date('Y/m/d',strtotime($fecha));
+        $cumpleanos = ( date($m,$d) < $m.$d ? date('Y')-$Y-1 : date('Y')-$Y );
+        return $cumpleanos;
+        */
+    }
     /**
      * Sube un archivo al servidor
      * @param $image

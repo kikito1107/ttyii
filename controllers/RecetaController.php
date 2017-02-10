@@ -38,7 +38,8 @@ class RecetaController extends \yii\web\Controller
             // call mPDF methods on the fly
             'methods' => [
                 'SetHeader'=>['Sistema Homeopático'],
-                'SetFooter'=>['{PAGENO}'],
+                'SetFooter'=>['Desarrollado por Alumnos de la Escuela Superior de Cómputo', '{PAGENO}'],
+                //'SetFooter'=>['{PAGENO}'],
             ]
         ]);
 
