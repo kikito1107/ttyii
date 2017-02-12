@@ -1,18 +1,18 @@
-<?= var_dump($paciente->getAnos());exit;?>
+<!--< ?= var_dump($paciente->getAnos());exit;?>-->
 
 <div class="contenedor" style="height: 100%">
 
     <div class="card">
         <div class="row">
             <div class="col-md-2 pull-left" style="width: 12%">
-                <img src="../img/homeo.png" style="width: 180px; height: 150px">
+                <img src="../img/homeo2.png" style="width: 150%">
             </div>
             <div class="col-md-3 text-center pull-left" style="width: 60%">
                 <p style="font-size: 22px">Instituto Politécnico Nacional</p>
                 <p>Sistema Homeopático</p>
                 <p>Unidad de médica - Receta individual - Consulta en Linea</p>
             </div>
-            <div class="col-md-2 pull-right" style="width: 12%;">
+            <div class="col-md-2 pull-right" style="width: 9%;">
                 <img src="../img/ipn.png" alt="Responsive image"  style="width: 80px; height: 100px">
             </div>
         </div>
