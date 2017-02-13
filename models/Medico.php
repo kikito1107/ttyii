@@ -35,6 +35,16 @@ use Yii;
 class Medico extends \yii\db\ActiveRecord
 {
     /**
+     * Estatus inactivo
+     */
+    const STATUS_INACTIVE = 0;
+
+    /**
+     * Estatus activo
+     */
+    const STATUS_ACTIVE = 1;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()

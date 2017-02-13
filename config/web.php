@@ -70,7 +70,7 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             //CODIGO DE DONDE SE VA A RECIBIR MENSAJES DE CLIENTES
-            'useFileTransport' => false,
+//            'useFileTransport' => true,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',

@@ -38,14 +38,11 @@ class MedicoController extends Controller
         $searchModel = new MedicoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $medicos = Medico::find()->where(['status' => Medico::STATUS_ACTIVE])->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            /**'frase' => [
-                'uno' => 1,
-                'dos' => 2,
-                'tres' => 3
-            ]**/
+            'medicos' => $medicos
         ]);
     }
 
