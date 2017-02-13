@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Paciente;
 use kartik\mpdf\Pdf;
 
 class RecetaController extends \yii\web\Controller
@@ -13,7 +14,8 @@ class RecetaController extends \yii\web\Controller
 
     public function actionPdf($id)
     {
-        $content = $this->renderPartial('_reportView');
+        $paciente = Paciente::find()->where(['id' => $id])->one();
+        $content = $this->renderPartial('_reportView', ['paciente' => $paciente]);
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_UTF8,
@@ -36,7 +38,8 @@ class RecetaController extends \yii\web\Controller
             // call mPDF methods on the fly
             'methods' => [
                 'SetHeader'=>['Sistema Homeopático'],
-                'SetFooter'=>['{PAGENO}'],
+                'SetFooter'=>['Desarrollado por Alumnos de la Escuela Superior de Cómputo', '{PAGENO}'],
+                //'SetFooter'=>['{PAGENO}'],
             ]
         ]);
 
