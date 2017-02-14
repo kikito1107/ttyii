@@ -17,10 +17,23 @@ $this->title = Yii::t('app', 'Listado de médicos');
             <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar nueva cuenta'), ['create', 'id' =>1, 'username'=>'dd'], ['class' => 'pull-right btn btn-danger']) ?>
         </h4>
         </div>
-<!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
         <div class="card-body white">
             <p>
             </p>
+<!--            --><?//= var_dump($medicos)?>
+            <table>
+                <thead>
+                    <tr class="bg-primary">
+                        <th></th>
+                    </tr>
+                </thead >
+                <tbody style="width: 12%">
+                    <tr></tr>
+                </tbody>
+            </table>
+<!--            --><?php //foreach (): ?>
+<!--            --><?php //endforeach; ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
