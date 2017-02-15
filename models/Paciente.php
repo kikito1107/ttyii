@@ -269,35 +269,41 @@ class Paciente extends \yii\db\ActiveRecord
     public function getAnos()
     {
 
-        //FUNCIONA SIN CONTAR LOS DIAS
+        /*//FUNCIONA SIN CONTAR LOS DIAS
         $cumpleanos = $this->cumple;
         $fecha = str_replace("/","-",$cumpleanos);
         $fecha = date('Y/m/d',strtotime($fecha));
         $hoy = date('Y/m/d');
         $edad = ($hoy - $fecha);
-        return $edad;
+        return $edad;*/
 
 
-        /*///haciendo PRUEBA  con dias comparados
+        ///haciendo PRUEBA  con dias comparados
         //FECHA ACTUAL
         $hoydia=date("d");
         $hoymes=date("m");
         $hoyano=date("Y");
 
         //FECHA DE USR
-        $fecha = $this->cumple;
-        $fecha = str_replace("/","-",$fecha);
-        $cumpleanos = date('Y/m/d',strtotime($fecha));
+        $cumpleanos = $this->cumple;
+        $fecha = str_replace("/","-",$cumpleanos);
+        $fechaYear = date('Y',strtotime($fecha));
+        $fechaMes = date('m',strtotime($fecha));
+        $fechaDia = date('d',strtotime($fecha));
 
         //si el mes es el mismo o mayor pero el día inferior aun no ha cumplido años, le quitaremos un año al actual
-        if (($month >= $hoymes) && ($day > $hoydia)) {
+        if (($fechaMes == $hoymes) && ($fechaDia > $hoydia)) {
             $hoyano=($hoyano-1);
-            $edad = $hoyano - $Year ;
-            echo $edad;
         }
-        echo $fecha;
+        if ($fechaMes > $hoymes){
+            $hoyano=($hoyano-1);
+        }
 
-        //Fomar elegante cuenta los dias
+        $edad = ($hoyano - $fechaYear);
+        echo $edad;
+
+
+        /*//Fomar elegante cuenta los dias
         $fecha = $this->cumple;
 
         list($Y,$m,$d) = str_replace("/","-",$fecha);

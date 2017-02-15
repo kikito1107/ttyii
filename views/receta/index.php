@@ -29,7 +29,8 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
         <p>El nombre de tu medico es:</p>
         <p>La hora de expedición es:</p>
 
-        <?= Html::a('<span class="glyphicon glyphicon-download"></span>', Url::to(['receta/pdf', 'id' => $paciente->id]),['data-method' => 'post'])?>
+
+        <?= Html::a('Descargar receta aqui <span class="glyphicon glyphicon-download"></span>', Url::to(['receta/pdf', 'id' => $paciente->id]),['data-method' => 'post'])?>
     </div>
 
 
