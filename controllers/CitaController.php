@@ -70,7 +70,7 @@ class CitaController extends Controller
      */
     public function actionCreate($id)
     {
-        var_dump($id);
+        //var_dump($id);
         $model = new Citas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

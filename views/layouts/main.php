@@ -97,7 +97,7 @@ AppAsset::register($this);
                     <?php if(Paciente::find()->where(['user_id' => $id])->one() != null): ?>
                         <?php $paciente = Paciente::find()->where(['user_id' =>$id])->one();?>
                         <!-- < ?php Cita::find()->where(['paciente_id' => $paciente->id])->one;?> -->
-                        <li>paciente</li>
+                        <li><strong><p class="text-center">Paciente</p></strong></li>
                         <li>
                             <a href="<?= Url::to(['/paciente/profile', 'id' => $paciente->id]) ?>" class="ripple">
                                 <em class="fa fa-user-md"></em>
@@ -129,7 +129,7 @@ AppAsset::register($this);
 <!-----------------------------------MEDICO---------------------------------------------------------------------------->
                     <?php elseif (Medico::find()->where(['user_id' =>$id])->one() != null): ?>
                         <?php $medico = Medico::find()->where(['user_id' =>$id])->one();?>
-                        <li>médico</li>
+                        <li><strong><p class="text-center">Médico</p></strong></li>
                         <li>
                             <a href="<?= Url::to(['/medico/view', 'id' => $medico->id]) ?>" class="ripple">
                                 <em class="fa fa-user-md"></em>
@@ -168,7 +168,7 @@ AppAsset::register($this);
                     <?php else: ?>
 <!----------------------------------------------------ADMIN---------------------------------------------------->
                         <!--Layout de ADMIN-->
-                        <li>administrador</li>
+                        <li><strong><p class="text-center">Administrador</p></strong></li>
                         <li>
                             <a href="<?= Url::to(['/auth/profile/view']) ?>" class="ripple">
                                 <em class="fa fa-medkit"></em>
