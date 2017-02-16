@@ -282,7 +282,6 @@ class Paciente extends \yii\db\ActiveRecord
         $edad = ($hoy - $fecha);
         return $edad;*/
 
-
         ///haciendo PRUEBA  con dias comparados
         //FECHA ACTUAL
         $hoydia=date("d");
@@ -317,6 +316,7 @@ class Paciente extends \yii\db\ActiveRecord
         return $cumpleanos;
         */
     }
+
     /**
      * Sube un archivo al servidor
      * @param $image

@@ -21,13 +21,7 @@ use yii\widgets\ActiveForm;
                     <h4>Registro</h4>
                     <div>
                     <img src="/img/registro.jpg" alt="imagen de registro" class="img-rounded">
-                    <?= $form->field($model, 'imagePhoto')->widget(FileInput::className(), [
-                        'options' => ['accept' => 'image/*','ng-required' => 'user_type == 3'],
-                        'pluginOptions' => [
-                            'showRemove' => false,
-                            'showUpload' => false
-                        ]
-                    ]) ?>
+
                     </div>
                 </div>
                 <div class="col-md-offset-2 col-md-6">
