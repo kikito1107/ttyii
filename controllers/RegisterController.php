@@ -18,7 +18,6 @@ class RegisterController extends \yii\web\Controller
     public function actionResendMail()
     {
         return $this->render('resend_mail');
-
     }
 
     public function actionValidate()
@@ -58,5 +57,15 @@ class RegisterController extends \yii\web\Controller
                 ]]);
             }
         }
+    }
+
+    public function actionSuccess()
+    {
+        return $this->render('success');
+    }
+
+    public function actionError()
+    {
+        return $this->render('error');
     }
 }

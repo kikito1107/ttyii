@@ -145,14 +145,22 @@ class PacienteController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException
      */
-    public function actionActivate($id, $status)
+    public function actionActivate($id)
     {
-        $model = $this->findModel($id);
-
-        $model->setAttribute('status', $status);
-
-        $model->save();
-
-        return $this->redirect(['index']);
+        $paciente = Paciente::find()->where(['user_id' => $id])->one();
+        if($paciente != null){
+            $paciente->setAttribute('status', Paciente::STATUS_ACTIVE);
+            $paciente->save();
+            if ($paciente->save()){
+                $user = \auth\models\User::find()->where(['id' => $id])->one();
+                $user->setAttribute('status', \auth\models\User::STATUS_ACTIVE);
+                $user->save();
+                if ($user->save()){
+                    return $this->redirect(['register/success']);
+                }
+                return $this->redirect(['register/error']);
+            }
+        }
+        return $this->redirect(['register/error']);
     }
 }
