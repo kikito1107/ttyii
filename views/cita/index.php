@@ -64,7 +64,7 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
                         </thead>
                         <tbody>
                             <tr>
-                                <td><?= date_format(date_create($model->dia) ,'d/m/y') ?></td>
+                                <td><?= date_format(date_create($model->dia) ,'d-M-y') ?></td>
                                 <td><?= Citas::getHours()[$model->hora]?></td>
                                 <?php if ($model->status == 1): ?>
                                     <td><?= Yii::t('app', 'Pendiente') ?></td>
@@ -75,6 +75,7 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
                                 <?php endif; ?>
                                 <td>
                                     <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['delete', 'id' => $model->id]),['data-method' => 'post'])?>
+                                    <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['update', 'id' => $model->id,'paciente_id' => $paciente->id]),['data-method' => 'post'])?>
                                 </td>
                             </tr>
                         </tbody>

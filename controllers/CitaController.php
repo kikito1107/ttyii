@@ -89,7 +89,7 @@ class CitaController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id,$paciente_id)
     {
         $model = $this->findModel($id);
 
@@ -98,6 +98,7 @@ class CitaController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'id' => $paciente_id
             ]);
         }
     }
