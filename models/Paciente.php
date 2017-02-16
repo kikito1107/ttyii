@@ -182,9 +182,11 @@ class Paciente extends \yii\db\ActiveRecord
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->status = 1;
+
         if($user->save()) {
             $auth = Yii::$app->authManager;
-            $role = $auth->getRole($this->getUserRole());
+            $role = $auth->getRole('client');
+
             $auth->assign($role, $user->id);
             return $user->id;
         }

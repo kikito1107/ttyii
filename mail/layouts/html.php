@@ -7,7 +7,6 @@ use yii\helpers\Url;
 /* @var $content string main view render result */
 ?>
 <body>
-
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
         <tr>
             <td bgcolor="#70bbd9" style="color: white; text-align: center">

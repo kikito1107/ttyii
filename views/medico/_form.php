@@ -9,8 +9,6 @@ use yii\widgets\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-
-<!--//= $form->field($model, 'user_id')->textInput() ?>-->
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
