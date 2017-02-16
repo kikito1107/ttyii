@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Paciente;
+use app\models\Medico;
 use Yii;
 use app\models\Citas;
 use app\models\CitasSearch;
@@ -49,6 +50,23 @@ class CitaController extends Controller
             'model' => $cita
         ]);
     }
+
+    public function actionIndexM()
+    {
+        $searchModel = new CitasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id = \Yii::$app->user->id;
+        $medico = Medico::find()->where(['user_id' => $id])->one();
+        $cita = Citas::find()->where(['medico_id' => $medico->id])
+            ->where(['status' => Citas::STATUS_PENDING])
+            ->one();
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $cita
+        ]);
+    }
+
 
     /**
      * Displays a single Citas model.
