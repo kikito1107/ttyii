@@ -64,11 +64,17 @@ class Citas extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if(parent::beforeSave($insert)){
-            $now = date('Y-m-d H:i:s');
+            $this->medico_id =5;
+            $now = date('Y-m-d');
             $date = Dates::convertSqlDate($this->dia);
-            $this->dia = $date;
+            $this->dia = $date +4;
+            echo $this;
+
             $this->status = self::STATUS_PENDING;
+
             if ($this->isNewRecord) {
+                if($this)
+                //$nueva = strtotime($now."+ 2 days");
                 $this->create_date = $now;
             }else{
                 $this->update_date = $now;

@@ -306,17 +306,7 @@ class Paciente extends \yii\db\ActiveRecord
         }
 
         $edad = ($hoyano - $fechaYear);
-        echo $edad;
-
-
-        /*//Fomar elegante cuenta los dias
-        $fecha = $this->cumple;
-
-        list($Y,$m,$d) = str_replace("/","-",$fecha);
-        $fecha = date('Y/m/d',strtotime($fecha));
-        $cumpleanos = ( date($m,$d) < $m.$d ? date('Y')-$Y-1 : date('Y')-$Y );
-        return $cumpleanos;
-        */
+        return $edad;
     }
 
     /**

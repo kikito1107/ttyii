@@ -10,17 +10,17 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 $id = (int)$id;
 $paciente =  Paciente::find()->where(['id' => $id])->one();
-$model->paciente_id = $paciente->id;
-$model->medico_id = 1;
+$paciente = $paciente->id;
+$medico = $model->medico_id;
 ?>
 
 <div class="citas-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'paciente_id')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'paciente_id')->hiddenInput(['value' => $paciente])->label(false) ?>
 
-    <?= $form->field($model, 'medico_id')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'medico_id')->hiddenInput(['value' => $medico])->label(false) ?>
 
     <div class="col-md-4 col-xs-12">
         <div class="ui-datepicker dp-head-danger dp-table-danger shadow-clear fix-width-material-input">
@@ -40,10 +40,13 @@ $model->medico_id = 1;
     <?= $form->field($model, 'hora')->dropDownList(\app\models\Citas::getHours()) ?>
     </div>
 
-
-
-    <div class="form-group">
+    <div class="form-group col-md-offset-5">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <div class="col-md-4">
+        <p class="text-danger"></p>
+        <p class="text-warning"></p>
     </div>
 
     <?php ActiveForm::end(); ?>

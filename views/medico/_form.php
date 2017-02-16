@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Medico */
 /* @var $form yii\widgets\ActiveForm */
+var_dump($model->getErrors());exit;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>

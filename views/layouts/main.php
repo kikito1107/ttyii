@@ -114,18 +114,12 @@ AppAsset::register($this);
                         </li>
                         <li>
                             <a href="<?= Url::to(['/receta']) ?>" class="ripple">
-                                <em class="fa fa-calendar"></em>
+                                <em class="fa fa-list-alt"></em>
                                 <span><?= Yii::t('app', 'Ver receta') ?></span>
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
-                        <li>
-                            <a href="<?= Url::to(['/citas']) ?>" class="ripple">
-                                <em class="fa fa-calendar"></em>
-                                <span><?= Yii::t('app', 'Consultar expediente') ?></span>
-                                <span class="md-ripple"></span>
-                            </a>
-                        </li>
+
 <!-----------------------------------MEDICO---------------------------------------------------------------------------->
                     <?php elseif (Medico::find()->where(['user_id' =>$id])->one() != null): ?>
                         <?php $medico = Medico::find()->where(['user_id' =>$id])->one();?>

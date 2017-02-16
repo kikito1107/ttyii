@@ -53,13 +53,13 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <table>
+                    <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>dia</th>
-                                <th>hora</th>
-                                <th>status</th>
-                                <th>acciones</th>
+                                <th>Día</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
