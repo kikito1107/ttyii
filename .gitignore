@@ -39,4 +39,4 @@ web/css/materialize.css
 /web/uploads/image*
 
 
-config/db.php
+config/*
