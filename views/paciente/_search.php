@@ -11,19 +11,19 @@ use yii\widgets\ActiveForm;
 <div class="paciente-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
+        'action' => ['register/resend-mail'],
+        'method' => 'post',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'user_id') ?>
-
-    <?= $form->field($model, 'nombre') ?>
-
-    <?= $form->field($model, 'paterno') ?>
-
-    <?= $form->field($model, 'materno') ?>
+<!--    --><?//= $form->field($model, 'id') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'user_id') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'nombre') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'paterno') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'materno') ?>
 
     <?php // echo $form->field($model, 'genero') ?>
 
@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'celular') ?>
 
-    <?php // echo $form->field($model, 'email') ?>
+    <?php  echo $form->field($model, 'email') ?>
 
     <?php // echo $form->field($model, 'password') ?>
 
@@ -55,9 +55,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'notificaciones') ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+    <div class="form-group text-center">
+        <?= Html::submitButton(Yii::t('app', 'Enviar correo'), ['class' => 'btn btn-success']) ?>
+<!--        --><?//= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

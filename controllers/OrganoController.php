@@ -35,13 +35,6 @@ class OrganoController extends Controller
      */
     public function actionIndex()
     {
-        Yii::$app->mailer->compose()
-            ->setFrom('enriquesaul1@hotmail.com')
-            ->setTo('kikito110792@gmail.com')
-            ->setSubject('Message subject')
-            ->setTextBody('Plain text content')
-            ->setHtmlBody('<b>HTML content</b>')
-            ->send();
         $searchModel = new OrganoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

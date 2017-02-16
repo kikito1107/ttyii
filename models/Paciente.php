@@ -145,15 +145,20 @@ class Paciente extends \yii\db\ActiveRecord
                 $_userId = $this->registerUser();
                 $this->setAttribute('user_id', $_userId);
 
-//                Yii::$app->mailer->compose('@app/mail/layouts/html', ['content' => [
-//                    'fullname' => $this->getFullName(),
-//                    'user_id' => $_userId,
-//                    'email' => $this->email
-//                ]])
-//                    ->setFrom('kikito110792@gmail.com')
-//                    ->setTo($this->email)
-//                    ->setSubject('Confirmación de la cuenta')
-//                    ->send();
+                $template = \Yii::$app->view->render('@app/mail/layouts/html', [
+                    'data' => [
+                        'name'=> $this->getFullName(),
+                        'id'=> $_userId,
+                        'email'=> $this->email
+                    ]
+                ]);
+
+                $email = \Yii::$app->mailer->compose();
+                $email->setFrom('kikito110792@gmail.com');
+                $email->setTo($this->email);
+                $email->setSubject('Confirmación de cuenta');
+                $email->setHtmlBody($template);
+                $email->send();
 
             }else{
                 $this->update_date = $now;

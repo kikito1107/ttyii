@@ -42,7 +42,7 @@ AppAsset::register($this);
                         </div>
                     </form>
                     <div class="card-footer">
-                        <a class="text-center btn-block">No ha llegado el correo</a>
+                        <?= Html::a('No ha llegado el correo', ['register/resend-mail'], ['class' => 'text-center btn-block'])?>
                     </div>
                 </div>
             </div>
