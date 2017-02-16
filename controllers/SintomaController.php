@@ -75,6 +75,25 @@ class SintomaController extends Controller
     }
 
     /**
+     * Creates a new Sintoma model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreateM()
+    {
+        $model = new Sintoma();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create_m', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+
+    /**
      * Updates an existing Sintoma model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id

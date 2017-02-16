@@ -1,17 +1,21 @@
 <?php
 
 use app\models\Medicamento;
+use app\models\Organo;
 use app\models\Sintoma;
 use app\models\Tratamiento;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Tratamiento */
-/* @var $form yii\widgets\ActiveForm */
-?>
 
+$this->title = Yii::t('app', 'Asignar tratamiento');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tratamientos'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
 <div class="card">
 
     <div class="card-heading">
@@ -47,7 +51,7 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($model, 'ponderacion')->dropDownList(Tratamiento::getPonderacion()) ?>
             </div>
 
-            <?= $form->field($model, 'status')->hiddenInput(['value' => Tratamiento::STATUS_ACTIVE])->label(false) ?>
+            <?= $form->field($model, 'status')->hiddenInput(['value' => Tratamiento::STATUS_INACTIVE])->label(false) ?>
 
             <div class="col-md-12">
                 <?= $form->field($model, 'descripcion')->textarea() ?>
@@ -59,5 +63,6 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 </div>
+

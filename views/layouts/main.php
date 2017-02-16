@@ -170,7 +170,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li>
-                            <a href="<?= Url::to(['/citas']) ?>" class="ripple">
+                            <a href="<?= Url::to(['/cita/index-m']) ?>" class="ripple">
                                 <em class="fa fa-calendar"></em>
                                 <span><?= Yii::t('app', 'Gestión de citas') ?></span>
                                 <span class="md-ripple"></span>

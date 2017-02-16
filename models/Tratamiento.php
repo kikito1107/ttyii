@@ -20,6 +20,16 @@ use Yii;
 class Tratamiento extends \yii\db\ActiveRecord
 {
     /**
+     * Estatus inactivo
+     */
+    const STATUS_INACTIVE = 0;
+
+    /**
+     * Estatus activo
+     */
+    const STATUS_ACTIVE = 1;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -47,14 +57,23 @@ class Tratamiento extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'sintoma_id' => Yii::t('app', 'Sintoma ID'),
-            'medicamento_id' => Yii::t('app', 'Medicamento ID'),
-            'organo_padre_id' => Yii::t('app', 'Organo Padre ID'),
+            'sintoma_id' => Yii::t('app', 'Sintoma'),
+            'medicamento_id' => Yii::t('app', 'Medicamento'),
+            'organo_padre_id' => Yii::t('app', 'Organo'),
             'ponderacion' => Yii::t('app', 'Ponderacion'),
             'status' => Yii::t('app', 'Status'),
             'descripcion' => Yii::t('app', 'Descripcion'),
             'update_date' => Yii::t('app', 'Update Date'),
             'create_date' => Yii::t('app', 'Create Date'),
+        ];
+    }
+
+    public static function getPonderacion()
+    {
+        return [
+            1 => "Menor efectividad",
+            2 => "Normal efectividad",
+            3 => "Mayor efectivadad",
         ];
     }
 }

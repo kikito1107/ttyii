@@ -57,10 +57,10 @@ class MedicamentoController extends Controller
     }
 
     /**
-     * Creates a new Medicamento model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+ * Creates a new Medicamento model.
+ * If creation is successful, the browser will be redirected to the 'view' page.
+ * @return mixed
+ */
     public function actionCreate()
     {
         $model = new Medicamento();
@@ -69,6 +69,24 @@ class MedicamentoController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Creates a new Medicamento model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreateM()
+    {
+        $model = new Medicamento();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create_m', [
                 'model' => $model,
             ]);
         }
