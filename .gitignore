@@ -37,4 +37,6 @@ web/css/materialize.css
 /source_frontend/.sass-cache
 /source_frontend/node_modules
 /web/uploads/image*
+
+
 config/db.php
