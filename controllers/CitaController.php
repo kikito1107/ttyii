@@ -53,17 +53,14 @@ class CitaController extends Controller
 
     public function actionIndexM()
     {
-        $searchModel = new CitasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $id = \Yii::$app->user->id;
         $medico = Medico::find()->where(['user_id' => $id])->one();
-        $cita = Citas::find()->where(['medico_id' => $medico->id])
+        $citas = Citas::find()->where(['medico_id' => $medico->id])
             ->where(['status' => Citas::STATUS_PENDING])
-            ->one();
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $cita
+                //'status' => Citas::STATUS_CANCEL])
+            ->all();
+        return $this->render('index_m', [
+            'citas' => $citas
         ]);
     }
 

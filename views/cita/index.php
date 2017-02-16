@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $id = \Yii::$app->user->id;
 $paciente = Paciente::find()->where(['user_id' => $id])->one();
 
+
 if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
     $citas_pendientes = true;
 } else {
