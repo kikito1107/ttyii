@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Medicamento;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -17,6 +18,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="col-md-6">
             <?= $form->field($model, 'abreviatura')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'status')->hiddenInput(['value' => Medicamento::STATUS_ACTIVE])->label(false) ?>
         </div>
     </div>
     <div class="row">

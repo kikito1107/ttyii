@@ -2,19 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\Mail;
-use auth\components\User;
 use Yii;
-use app\models\Paciente;
-use app\models\PacienteSearch;
+use app\models\Tratamiento;
+use app\models\TratamientoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PacienteController implements the CRUD actions for Paciente model.
+ * TratamientoController implements the CRUD actions for Tratamiento model.
  */
-class PacienteController extends Controller
+class TratamientoController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,12 +30,12 @@ class PacienteController extends Controller
     }
 
     /**
-     * Lists all Paciente models.
+     * Lists all Tratamiento models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PacienteSearch();
+        $searchModel = new TratamientoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +45,7 @@ class PacienteController extends Controller
     }
 
     /**
-     * Displays a single Paciente model.
+     * Displays a single Tratamiento model.
      * @param integer $id
      * @return mixed
      */
@@ -59,17 +57,16 @@ class PacienteController extends Controller
     }
 
     /**
-     * Creates a new Paciente model.
+     * Creates a new Tratamiento model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Paciente();
+        $model = new Tratamiento();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            return $this->redirect(['register/send-mail']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -78,7 +75,7 @@ class PacienteController extends Controller
     }
 
     /**
-     * Updates an existing Paciente model.
+     * Updates an existing Tratamiento model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,7 +94,7 @@ class PacienteController extends Controller
     }
 
     /**
-     * Deletes an existing Paciente model.
+     * Deletes an existing Tratamiento model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,73 +106,19 @@ class PacienteController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionViewPaciente($id) {
-        return $this->render('view_paciente', [
-            'model' => $this->findModel($id),
-            'text' => 'Hola mundo'
-        ]);
-    }
-
-    public function actionProfile($id)
-    {
-        return $this->render('view-paciente', [
-            'model' => $this->findModel($id)
-        ]);
-    }
     /**
-     * Finds the Paciente model based on its primary key value.
+     * Finds the Tratamiento model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Paciente the loaded model
+     * @return Tratamiento the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Paciente::findOne($id)) !== null) {
+        if (($model = Tratamiento::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    /**
-     * Activa/Desactiva un elemento
-     * @param $id
-     * @param $status
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException
-     */
-    public function actionActivate($id)
-    {
-        $paciente = Paciente::find()->where(['user_id' => $id])->one();
-        if($paciente != null){
-            $paciente->setAttribute('status', Paciente::STATUS_ACTIVE);
-            $paciente->save();
-            if ($paciente->save()){
-                $user = \auth\models\User::find()->where(['id' => $id])->one();
-                $user->setAttribute('status', \auth\models\User::STATUS_ACTIVE);
-                $user->save();
-                if ($user->save()){
-                    return $this->redirect(['register/success']);
-                }
-                return $this->redirect(['register/error']);
-            }
-        }
-        return $this->redirect(['register/error']);
-    }
-
-    public function actionActivateCount($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->status == Paciente::STATUS_ACTIVE){
-            $model->setAttribute('status', Paciente::STATUS_INACTIVE);
-        } else {
-            $model->setAttribute('status', Paciente::STATUS_ACTIVE);
-        }
-
-        $model->save();
-
-        return $this->redirect(['/paciente']);
     }
 }

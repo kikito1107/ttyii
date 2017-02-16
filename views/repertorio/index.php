@@ -18,7 +18,7 @@ use yii\helpers\Url;
             <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/medicamento/create']) ?>" role="button">Agregar medicamento</a></p>
         </div>
         <div class="col-md-3">
-            <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/repertorio']) ?>" role="button">Crear tratamiento</a></p>
+            <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/tratamiento/create']) ?>" role="button">Crear tratamiento</a></p>
         </div>
     </div>
 
