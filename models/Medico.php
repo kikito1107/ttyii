@@ -35,6 +35,26 @@ use Yii;
 class Medico extends \yii\db\ActiveRecord
 {
     /**
+     * Usuario con permiso de administrador
+     */
+    const USER_ADMINISTRATOR = 1;
+
+    /**
+     * usuario con permiso de supervisor
+     */
+    const USER_SUPERVISOR = 2;
+
+    /**
+     * Usuario con permiso de operador o conductor
+     */
+    const USER_OPERATOR = 3;
+
+    /**
+     * Usuario con permiso de cliente
+     */
+    const USER_CLIENT = 4;
+
+    /**
      * Estatus inactivo
      */
     const STATUS_INACTIVE = 0;
@@ -107,24 +127,35 @@ class Medico extends \yii\db\ActiveRecord
      */
     public function beforeSave($insert)
     {
-        $this->nombre = rtrim($this->nombre);
+        $this->username = rtrim($this->username);
 
         if(parent::beforeSave($insert)){
             $now = date('Y-m-d H:i:s');
-
-            $date = Dates::convertSqlDate($this->cumple);
-            $this->cumple = $date;
             $this->create_date = $now;
-            $this->status = 1;
+            $this->status = Medico::STATUS_ACTIVE;
             $this->user_type = 2;
+            $this->password = $this->generatePassword();
+
             if ($this->isNewRecord) {
                 $_userId = $this->registerUser();
                 $this->setAttribute('user_id', $_userId);
+
+                $template = \Yii::$app->view->render('@app/mail/layouts/medico', [
+                    'data' => [
+                        'name'=> $this->username,
+                        'password' => $this->password,
+                        'email'=> $this->email
+                    ]
+                ]);
+
+                $email = \Yii::$app->mailer->compose();
+                $email->setFrom('kikito110792@gmail.com');
+                $email->setTo($this->email);
+                $email->setSubject('Datos de inicio de sesión - Sistema homeopático');
+                $email->setHtmlBody($template);
+                $email->send();
             }else{
                 $this->update_date = $now;
-                $user = new User();
-                $user->setPassword($password = '123456');
-
             }
             return true;
         }
@@ -142,13 +173,15 @@ class Medico extends \yii\db\ActiveRecord
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-        $password = '123456';
+        $password = $this->password;
         $user->setPassword($password);
         $user->generateAuthKey();
-        $user->status = 2;
+        $user->status = User::STATUS_ACTIVE;
+        $user->save();
+
         if($user->save()) {
             $auth = Yii::$app->authManager;
-            $role = $auth->getRole('medico');
+            $role = $auth->getRole('supervisor');
             $auth->assign($role, $user->id);
             return $user->id;
         }
@@ -164,5 +197,30 @@ class Medico extends \yii\db\ActiveRecord
     {
         $password = substr(md5(microtime()), 1, 8);
         return $password;
+    }
+
+    /**
+    * Devuelve el tipo de role que le pertenece al usuario
+    * @return string
+    */
+    public function getUserRole()
+    {
+        switch ($this->user_type) {
+            case $this::USER_ADMINISTRATOR:
+                $role = "administrator";
+                break;
+            case $this::USER_SUPERVISOR:
+                $role = "supervisor";
+                break;
+            case $this::USER_OPERATOR:
+                $role = "operator";
+                break;
+            case $this::USER_CLIENT:
+                $role = "client";
+                break;
+            default:
+                $role = "guest";
+                break;
+        }
     }
 }

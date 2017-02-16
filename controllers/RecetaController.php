@@ -24,7 +24,7 @@ class RecetaController extends \yii\web\Controller
             // portrait orientation
             'orientation' => Pdf::ORIENT_PORTRAIT,
             // stream to browser inline
-            'destination' => PDF::DEST_BROWSER,
+            'destination' => Pdf::DEST_BROWSER,
             // your html content input
             'content' => $content,
             // format content from your own css file if needed or use the
