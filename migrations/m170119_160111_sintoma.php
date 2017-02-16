@@ -11,6 +11,7 @@ class m170119_160111_sintoma extends Migration
             'nombre' => $this->string(50)->notNull(),
             'organo' => $this->string(6)->notNull(),
             'organo_padre' => $this->string(6)->notNull(),
+            'status' => $this->integer(1)->notNull(),
             'descripcion'=> $this->string(50)->defaultValue(null),
             'update_date' => $this->dateTime()->defaultValue(null),
             'create_date' => $this->dateTime()->notNull()
@@ -21,6 +22,7 @@ class m170119_160111_sintoma extends Migration
         $this->createTable('{{%organo}}', [
             'id' => $this->primaryKey(11),
             'nombre' => $this->string(50)->notNull(),
+            'status' => $this->integer(1)->notNull(),
             'update_date' => $this->dateTime()->defaultValue(null),
             'create_date' => $this->dateTime()->notNull()
         ], 'ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1');

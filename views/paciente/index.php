@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PacienteSearch */
@@ -15,15 +16,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-heading bg-primary">
         <h4 class="m0 text-capitalize">
             <?= Html::encode($this->title) ?>
-<!--            //= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar'), ['create'], ['class' => 'pull-right btn btn-danger']) --x>
+<!--            //= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Agregar'), ['create'], ['class' => 'pull-right btn btn-danger']) -->
         </h4>
     </div>
     <div class="card-body">
         <p></p>
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<!--        --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'cumple',
             // 'direccion',
             // 'telefono',
-             'celular',
+//             'celular',
              'email:email',
             // 'password',
             // 'image_Photo',
@@ -48,7 +49,52 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'alergias:ntext',
             // 'notificaciones',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view}  {status}',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-eye" aria-hidden="true"></i> Ver detalle',
+                            Url::to(['view', 'id' => $model->id]), [
+                                'data-pjax' => 0,
+                                'aria-label' => 'Ver detalle',
+                                'title' => 'Ver detalle',
+                                'class' => 'btn btn-xs btn-default mb-sm text-inverse'
+                            ]);
+                    },
+//                    'update' => function ($url, $model) {
+//                        return Html::a('<i class="fa fa-pencil" aria-hidden="true"></i> Actualizar',
+//                            Url::to(['update', 'id' => $model->id]), [
+//                                'data-pjax' => 0,
+//                                'aria-label' => 'Actualizar',
+//                                'title' => 'Actualizar',
+//                                'class' => 'btn btn-xs btn-default mb-sm text-primary'
+//                            ]);
+//                    },
+                    'status' => function ($url, $model) {
+                        if($model->status == 1) {
+                            return Html::a('<i class="fa fa-times" aria-hidden="true"></i> Desactivar',
+                                Url::to(['activate-count', 'id' => $model->id]), [
+                                    'data-pjax' => 0,
+                                    'aria-label' => 'Desactivar',
+                                    'title' => 'Desactivar',
+                                    'class' => 'btn btn-xs btn-default mb-sm text-danger',
+                                    'data-confirm' => '¿Está seguro de desactivar este elemento?',
+                                    'data-method' => 'post'
+                                ]);
+                        } else {
+                            return Html::a('<i class="fa fa-check" aria-hidden="true"></i> Activar',
+                                Url::to(['activate-count', 'id' => $model->id]), [
+                                    'data-pjax' => 0,
+                                    'aria-label' => 'Activar',
+                                    'title' => 'Activar',
+                                    'class' => 'btn btn-xs btn-default mb-sm text-success',
+                                    'data-confirm' => '¿Está seguro de activar este elemento?',
+                                    'data-method' => 'post'
+                                ]);
+                        }
+                    }
+                ],
+            ],
         ],
     ]); ?>
 </div>

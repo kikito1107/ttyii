@@ -18,6 +18,16 @@ use Yii;
 class Sintoma extends \yii\db\ActiveRecord
 {
     /**
+     * Estatus inactivo
+     */
+    const STATUS_INACTIVE = 0;
+
+    /**
+     * Estatus activo
+     */
+    const STATUS_ACTIVE = 1;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -31,8 +41,9 @@ class Sintoma extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'organo', 'organo_padre', 'create_date'], 'required'],
+            [['nombre', 'organo_padre'], 'required'],
             [['update_date', 'create_date'], 'safe'],
+            [['status'], 'integer'],
             [['nombre', 'descripcion'], 'string', 'max' => 50],
             [['organo', 'organo_padre'], 'string', 'max' => 6],
         ];
@@ -48,6 +59,7 @@ class Sintoma extends \yii\db\ActiveRecord
             'nombre' => Yii::t('app', 'Nombre'),
             'organo' => Yii::t('app', 'Organo'),
             'organo_padre' => Yii::t('app', 'Organo Padre'),
+            'status' => Yii::t('app', 'status'),
             'descripcion' => Yii::t('app', 'Descripcion'),
             'update_date' => Yii::t('app', 'Update Date'),
             'create_date' => Yii::t('app', 'Create Date'),

@@ -17,6 +17,16 @@ use Yii;
 class Medicamento extends \yii\db\ActiveRecord
 {
     /**
+     * Estatus inactivo
+     */
+    const STATUS_INACTIVE = 0;
+
+    /**
+     * Estatus activo
+     */
+    const STATUS_ACTIVE = 1;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -32,6 +42,7 @@ class Medicamento extends \yii\db\ActiveRecord
         return [
             [['nombre', 'abreviatura'], 'required'],
             [['update_date', 'create_date'], 'safe'],
+            [['status'], 'integer'],
             [['nombre', 'descripcion'], 'string', 'max' => 50],
             [['abreviatura'], 'string', 'max' => 6],
         ];
@@ -46,6 +57,7 @@ class Medicamento extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'id'),
             'nombre' => Yii::t('app', 'Nombre'),
             'abreviatura' => Yii::t('app', 'Abreviatura'),
+            'status' => Yii::t('app', 'status'),
             'descripcion' => Yii::t('app', 'Descripción'),
             'update_date' => Yii::t('app', 'Fecha de actualización'),
             'create_date' => Yii::t('app', 'Fecha de creación'),
@@ -61,9 +73,9 @@ class Medicamento extends \yii\db\ActiveRecord
 
         if(parent::beforeSave($insert)){
             $now = date('Y-m-d H:i:s');
-            $this->create_date = $now;
-            if ($this->isNewRecord) {
 
+            if ($this->isNewRecord) {
+                $this->create_date = $now;
             }else{
                 $this->update_date = $now;
             }

@@ -38,7 +38,8 @@ class Citas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dia', 'hora'], 'required'],
+            [['dia', 'hora', 'paciente_id', 'medico_id'], 'required'],
+            [['dia'], 'date', 'min' => time(), 'minString' => date('d-m-y', strtotime('3 Days')), 'maxString' => date('d-m-y', strtotime("3 Months")), 'format' => 'd-m-y'],
             [['paciente_id', 'medico_id', 'hora', 'status'], 'integer'],
             [['dia', 'update_date', 'create_date'], 'safe'],
         ];
@@ -64,6 +65,7 @@ class Citas extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if(parent::beforeSave($insert)){
+<<<<<<< HEAD
             $this->medico_id =5;
             $now = date('Y-m-d');
             $date = Dates::convertSqlDate($this->dia);
@@ -71,6 +73,13 @@ class Citas extends \yii\db\ActiveRecord
             echo $this;
 
             $this->status = self::STATUS_PENDING;
+=======
+            $date = Dates::convertSqlDate($this->dia);
+            $this->dia = $date;
+
+            $now = date('Y-m-d H:i:s');
+            $this->status = Citas::STATUS_PENDING;
+>>>>>>> 7424809218e6d80aef42bcfd48192d2e1a255629
 
             if ($this->isNewRecord) {
                 if($this)

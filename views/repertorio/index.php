@@ -26,6 +26,7 @@ $medico = Medico::find()->where(['user_id'=>$id])->one();
                 <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/tratamiento/create-m']) ?>" role="button">Crear tratamiento</a></p>
             </div>
         </div>
+<<<<<<< HEAD
     <?php else:?><!-- cuando es administrador -->
         <div class="row">
             <div class="col-md-3">
@@ -40,6 +41,10 @@ $medico = Medico::find()->where(['user_id'=>$id])->one();
             <div class="col-md-3">
                 <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/tratamiento/create']) ?>" role="button">Crear tratamiento</a></p>
             </div>
+=======
+        <div class="col-md-3">
+            <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/tratamiento/create']) ?>" role="button">Crear tratamiento</a></p>
+>>>>>>> 7424809218e6d80aef42bcfd48192d2e1a255629
         </div>
     <?php endif; ?>
 </div>

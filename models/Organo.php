@@ -16,6 +16,16 @@ use Yii;
 class Organo extends \yii\db\ActiveRecord
 {
     /**
+     * Estatus inactivo
+     */
+    const STATUS_INACTIVE = 0;
+
+    /**
+     * Estatus activo
+     */
+    const STATUS_ACTIVE = 1;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -29,7 +39,8 @@ class Organo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre'], 'required'],
+            [['nombre', 'status'], 'required'],
+            [['status'], 'integer'],
             [['update_date', 'create_date'], 'safe'],
             [['nombre'], 'string', 'max' => 50],
         ];
@@ -43,6 +54,7 @@ class Organo extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'nombre' => Yii::t('app', 'Nombre'),
+            'status' => Yii::t('app', 'estatus'),
             'update_date' => Yii::t('app', 'Fecha de actualización'),
             'create_date' => Yii::t('app', 'Fecha de creación'),
         ];
@@ -57,9 +69,8 @@ class Organo extends \yii\db\ActiveRecord
 
         if(parent::beforeSave($insert)){
             $now = date('Y-m-d H:i:s');
-            $this->create_date = $now;
             if ($this->isNewRecord) {
-
+                $this->create_date = $now;
             }else{
                 $this->update_date = $now;
             }
