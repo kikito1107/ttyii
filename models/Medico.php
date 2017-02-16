@@ -223,4 +223,14 @@ class Medico extends \yii\db\ActiveRecord
                 break;
         }
     }
+
+    public function validateData(){
+        if ($this->nombre != "" && $this->paterno !="" && $this->materno !="" && $this->genero !="" && $this->cumple !="" && $this->direccion !=""
+            && $this->telefono !="" && $this->celular !="" && $this->image_Photo !="" && $this->cedula !="" && $this->escuela !="" && $this->especialidad !=""
+            && $this->descripcion !="" ){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

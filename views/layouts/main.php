@@ -32,6 +32,7 @@ AppAsset::register($this);
 </head>
 <body class="theme-4">
 <?php $this->beginBody() ?>
+
 <script type="text/javascript">
     Messaging = {
         baseUrl: '<?php echo Url::base() ?>/'
@@ -123,11 +124,34 @@ AppAsset::register($this);
 <!-----------------------------------MEDICO---------------------------------------------------------------------------->
                     <?php elseif (Medico::find()->where(['user_id' =>$id])->one() != null): ?>
                         <?php $medico = Medico::find()->where(['user_id' =>$id])->one();?>
+                        <?php $info = $medico->validateData()?>
                         <li><strong><p class="text-center">Médico</p></strong></li>
                         <li>
                             <a href="<?= Url::to(['/medico/view', 'id' => $medico->id]) ?>" class="ripple">
                                 <em class="fa fa-user-md"></em>
-                                <span><?= Yii::t('app', 'Perfil') ?></span>
+                                <span>
+                                    <?php if($info == false): ?>
+                                        <?= Yii::t('app', 'Perfil
+                                            <span data-tooltip="Debes de completar tu perfil" style="position: absolute;
+                                                top: 27px;
+                                                height: 4px;
+                                                right: 100px;
+                                                
+                                                width: 30px;">
+                                                <label class="label label-danger" style="position: relative;
+                                                    top: -29px;
+                                                    padding: 5px 46px 5px 6px;
+                                                    text-align: center;">
+                                                    <span class="glyphicon glyphicon-info-sign">&nbsp;</span>
+                                                </label>
+                                             </span>
+                                        ') ?>
+                                    <?php else: ?>
+                                        <?= Yii::t('app', 'Perfil') ?>
+                                    <?php endif;?>
+
+
+                                </span>
                                 <span class="md-ripple"></span>
                             </a>
                         </li>

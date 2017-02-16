@@ -31,14 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <p>
-            <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a(Yii::t('app', 'Desactivar'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('app', '¿Estas seguro que quieres desactivar este elemento?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
+            <?= Html::a(Yii::t('app', 'Actualizar'), ['update-m', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+<!--            --><?//= Html::a(Yii::t('app', 'Desactivar'), ['delete', 'id' => $model->id], [
+//                'class' => 'btn btn-danger',
+//                'data' => [
+//                    'confirm' => Yii::t('app', '¿Estas seguro que quieres desactivar este elemento?'),
+//                    'method' => 'post',
+//                ],
+//            ]) ?>
         </p>
     </div>
 
