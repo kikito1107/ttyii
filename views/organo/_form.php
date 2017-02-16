@@ -28,9 +28,9 @@ use yii\widgets\ActiveForm;
 
         </div>
     </div>
-<!--    --><?//= $form->field($model, 'update_date')->textInput() ?>
-<!---->
-<!--    --><?//= $form->field($model, 'create_date')->textInput() ?>
+<!--    < ?//= $form->field($model, 'update_date')->textInput() ?>
+
+<!--    --< ?//= $form->field($model, 'create_date')->textInput() ?> -->
 
 
 
