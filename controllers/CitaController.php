@@ -122,7 +122,7 @@ class CitaController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect('index-m');
         } else {
-            return $this->render('create', [
+            return $this->render('create-m', [
                 'model' => $model,
                 'id' => $medico->$id,
             ]);

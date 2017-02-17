@@ -28,7 +28,7 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
             <h5><?= Html::encode($this->title) ?></h5>
         </div>
 
-        <?php if ($pendientes == null): ?>
+        <?php if ($pendientes == null && $aprobadas == null): ?>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -45,54 +45,93 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
                 </div>
             </div>
         </div>
+
         <?php else: ?>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <h4>Tus citas pendientes</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Pendiente</th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+
+                                <?php foreach ($pendientes as $pendiente): ?>
+                                <td>
+                                    <?= $pendiente->dia ?>
+                                </td>
+                                <td>
+                                    <?= Citas::getHours()[$pendiente->hora] ?>
+                                </td>
+                                <td>
+                                    <?php if($pendiente->status == Citas::STATUS_PENDING): ?>
+                                        <i class="fa fa-check" aria-hidden="true"></i> Activar
+                                        <br>
+                                        <i class="fa fa-times" aria-hidden="true"></i> Descativar
+                                </td>
+                            </tr>
+                                    <?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>
+                                        <p>Pendiente a que el usuario cambie la fecha</p>
+                                    <!--< ?php else:?>
+                                    <!--Cita aceptada-->
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                        </table>
+
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
+
+                <div class="col-md-4 text-center col-md-offset-4">
+                    <h4>Tus citas Aprobadas</h4>
+
                     <table class="table table-striped">
                         <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                                <th>Pendiente</th>
-                            </tr>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Aprovadas</th>
+                        </tr>
                         </thead>
 
                         <tr>
 
-                            <?php foreach ($pendientes as $pendiente): ?>
+                            <?php foreach ($aprobadas as $aprobada): ?>
                             <td>
-                                <?= $pendiente->dia ?>
+                                <?= $aprobada->dia ?>
                             </td>
                             <td>
-                                <?= Citas::getHours()[$pendiente->hora] ?>
+                                <?= Citas::getHours()[$aprobada->hora] ?>
                             </td>
                             <td>
-                                <?php if($pendiente->status == Citas::STATUS_PENDING): ?>
-
-                                Pendiente
-                                <?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>
-
-                                Pendiente a que el usuario cambie la fecha
-                                <?php else:?>
-
-                                Cita aceptada
-                                <?php endif; ?>
+                                <?php if($aprobada->status == Citas::STATUS_APROVED): ?>
+                                <i class="fa fa-check" aria-hidden="true"></i> Activar
+                                <br>
+                                <i class="fa fa-times" aria-hidden="true"></i> Descativar
                             </td>
-
                         </tr>
-                    <?php endforeach; ?>
+                        <!--< ?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>-->
+                        <!--Pendiente a que el usuario cambie la fecha
+                        <!--< ?php else:?>-->
+                        <!--Cita aceptada-->
+                        <?php endif; ?>
+                        <?php endforeach; ?>
                     </table>
                 </div>
-            </div>
 
+            </div>
         </div>
         <?php endif; ?>
+
+        <div class=" text-center">
+            <h3>
+                <?= Html::a(Yii::t('app', 'Generar Cita'), ['/citas/create-m', 'id' => \Yii::$app->user->getId()], ['class' => 'btn btn-success']) ?>
+            </h3>
+        </div>
 
         <mwl-calendar
             view="calendarView"

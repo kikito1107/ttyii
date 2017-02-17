@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'nombre')->dropDownList(['maxlength' => true]) ?>
 <!--            <p class="label bg-info">Recuerda agregar los organos conforme a lo establecido en el repertorio a utilizar para que la forma de asignación sea más facil</p>-->
             <?= $form->field($model, 'status')->hiddenInput(['value' => Organo::STATUS_ACTIVE])->label(false) ?>
             <br>
