@@ -84,7 +84,7 @@ class Paciente extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'genero', 'status', 'user_type'], 'integer'],
+            [['user_id', 'genero', 'status', 'user_type', 'medico_id'], 'integer'],
             [['nombre', 'paterno', 'materno', 'genero'], 'required'],
             [['cumple', 'update_date', 'create_date'], 'safe'],
             [['alergias'], 'string'],
@@ -107,6 +107,7 @@ class Paciente extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
             'nombre' => Yii::t('app', 'Nombre'),
+            'medico_id' => Yii::t('app', 'Médico seleccionado'),
             'paterno' => Yii::t('app', 'Apellido paterno'),
             'materno' => Yii::t('app', 'Apellido materno'),
             'genero' => Yii::t('app', 'Género'),

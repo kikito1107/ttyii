@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Mail;
+use app\models\Medico;
 use auth\components\User;
 use Yii;
 use app\models\Paciente;
@@ -35,14 +36,12 @@ class PacienteController extends Controller
      * Lists all Paciente models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $searchModel = new PacienteSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $pacientes = Paciente::find()->where(['medico_id' => $id])->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'pacientes' => $pacientes
         ]);
     }
 

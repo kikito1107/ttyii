@@ -9,6 +9,7 @@ class m160420_183802_profile extends Migration
         $this->createTable('{{%paciente}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(11)->defaultValue(null),
+            'medico_id' => $this->integer(11)->defaultValue(null),
             'nombre' => $this->string(50)->notNull(),
             'paterno' => $this->string(50)->notNull(),
             'materno' => $this->string(50)->notNull(),

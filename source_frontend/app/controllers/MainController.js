@@ -53,5 +53,6 @@ var compareTo = function() {
         }
     };
 };
+module('myApp', ['mwl.calendar', 'ui.bootstrap']);
 
 module.directive("compareTo", compareTo);
