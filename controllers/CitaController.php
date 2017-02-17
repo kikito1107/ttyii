@@ -51,12 +51,10 @@ class CitaController extends Controller
         ]);
     }
 
-    public function actionIndexM()
+    public function actionIndexM($id)
     {
-        // id del usuario logiado
-        $id = \Yii::$app->user->id;
         // información del medico obtenida mediante id
-        $medico = Medico::find()->where(['user_id' => $id])->one();
+        $medico = Medico::find()->where(['id' => $id])->one();
         // Busqueda de todas las citas asociadas a el médico
         $citas_pendientes = Citas::find()->where(['medico_id' => $medico->id])
             ->where(['status' => Citas::STATUS_PENDING])
@@ -69,7 +67,7 @@ class CitaController extends Controller
             ->all();
 
         return $this->render('index_m', [
-            'pendiependientes' => $citas_pendientes,
+            'pendientes' => $citas_pendientes,
             'canceladas' => $citas_canceladas,
             'aprobadas' => $citas_aprobadas
         ]);

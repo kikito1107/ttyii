@@ -28,7 +28,7 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
             <h5><?= Html::encode($this->title) ?></h5>
         </div>
 
-        <?php if ($citas_pendientes == null): ?>
+        <?php if ($pendientes == null): ?>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -65,18 +65,18 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
 
                         <tr>
 
-                            <?php foreach ($pendiente as $pendiente): ?>
+                            <?php foreach ($pendientes as $pendiente): ?>
                             <td>
-                                <?= $citas_pendientes->dia ?>
+                                <?= $pendiente->dia ?>
                             </td>
                             <td>
-                                <?= Citas::getHours()[$citas_pendientes->hora] ?>
+                                <?= Citas::getHours()[$pendiente->hora] ?>
                             </td>
                             <td>
-                                <?php if($citas_pendientes->status == Citas::STATUS_PENDING): ?>
+                                <?php if($pendiente->status == Citas::STATUS_PENDING): ?>
 
                                 Pendiente
-                                <?php elseif ($citas_pendientes->status == Citas::STATUS_CANCEL): ?>
+                                <?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>
 
                                 Pendiente a que el usuario cambie la fecha
                                 <?php else:?>
