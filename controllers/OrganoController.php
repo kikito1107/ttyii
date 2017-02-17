@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Notificaciones;
 use Yii;
 use app\models\Organo;
 use app\models\OrganoSearch;
@@ -66,6 +67,8 @@ class OrganoController extends Controller
         $model = new Organo();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -84,6 +87,13 @@ class OrganoController extends Controller
         $model = new Organo();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->status == 0){
+
+                $noti = new Notificaciones();
+                $noti->organo_id = $model->id;
+                $noti->medico_id = 6;
+                $noti->status = 0;
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create_m', [
