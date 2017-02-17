@@ -53,14 +53,25 @@ class CitaController extends Controller
 
     public function actionIndexM()
     {
+        // id del usuario logiado
         $id = \Yii::$app->user->id;
+        // información del medico obtenida mediante id
         $medico = Medico::find()->where(['user_id' => $id])->one();
-        $citas = Citas::find()->where(['medico_id' => $medico->id])
+        // Busqueda de todas las citas asociadas a el médico
+        $citas_pendientes = Citas::find()->where(['medico_id' => $medico->id])
             ->where(['status' => Citas::STATUS_PENDING])
-                //'status' => Citas::STATUS_CANCEL])
             ->all();
+        $citas_canceladas = Citas::find()->where(['medico_id' => $medico->id])
+            ->where(['status' => Citas::STATUS_CANCEL])
+            ->all();
+        $citas_aprobadas = Citas::find()->where(['medico_id' => $medico->id])
+            ->where(['status' => Citas::STATUS_APROVED])
+            ->all();
+
         return $this->render('index_m', [
-            'citas' => $citas
+            'pendiependientes' => $citas_pendientes,
+            'canceladas' => $citas_canceladas,
+            'aprobadas' => $citas_aprobadas
         ]);
     }
 
@@ -97,6 +108,30 @@ class CitaController extends Controller
             ]);
         }
     }
+
+
+    /**
+     * Creates a new Citas model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionCreateM($id)
+    {
+        $medico = Medico::find()->where(['user_id' => $id])->one();
+        $model = new Citas();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect('index-m');
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+                'id' => $medico->$id,
+            ]);
+        }
+    }
+
+
 
     /**
      * Updates an existing Citas model.
