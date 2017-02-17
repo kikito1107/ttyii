@@ -1,16 +1,16 @@
 <?php
 
 // Martinez
-/*return [
+return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost; dbname=tt',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
     'tablePrefix' => 'tbl_'
-];*/
+];
 
-// Saul
+/*// Saul
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost; dbname=ttyii',
@@ -18,4 +18,4 @@ return [
     'password' => '123456',
     'charset' => 'utf8',
     'tablePrefix' => 'tbl'
-];
+];*/

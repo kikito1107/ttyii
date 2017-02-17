@@ -95,7 +95,7 @@ $this->title = Yii::t('app', 'Listado de médicos');
                         } else {
                             return Html::a('<i class="fa fa-check" aria-hidden="true"></i> Activar',
                                 Url::to(['activate', 'id' => $model->id, 'status' => 1]), [
-                                    'data-pjax' => 0,
+                                        'data-pjax' => 0,
                                     'aria-label' => 'Activar',
                                     'title' => 'Activar',
                                     'class' => 'btn btn-xs btn-default mb-sm text-success',
