@@ -6,16 +6,20 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tratamiento */
 
-$this->title = Yii::t('app', 'Create Tratamiento');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tratamientos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tratamiento-create">
+    <div class="card">
+        <div class="card-heading blue darken-3 white-text">
+            <h5>Agregar nuevo tratamiento</h5>
+        </div>
+        <div class="card-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+
 
 </div>
