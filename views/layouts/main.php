@@ -129,7 +129,7 @@ AppAsset::register($this);
                         <?php $info = $medico->validateData()?>
                         <li><strong><p class="text-center">Médico</p></strong></li>
                         <li>
-                            <a href="<?= Url::to(['/medico/view', 'id' => $medico->id]) ?>" class="ripple">
+                            <a href="<?= Url::to(['/medico/view-m', 'id' => $medico->id]) ?>" class="ripple">
                                 <em class="fa fa-user-md"></em>
                                 <span>
                                     <?php if($info == false): ?>

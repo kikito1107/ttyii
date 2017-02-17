@@ -5,6 +5,7 @@ namespace app\models;
 use auth\models\User;
 use messaging\shared\helpers\Dates;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%medico}}".
@@ -34,6 +35,11 @@ use Yii;
  */
 class Medico extends \yii\db\ActiveRecord
 {
+    /**
+     * @var UploadedFile $imageLicense
+     */
+    public $imagePhoto;
+
     /**
      * Usuario con permiso de administrador
      */
@@ -87,6 +93,7 @@ class Medico extends \yii\db\ActiveRecord
             [['telefono', 'celular'], 'string', 'max' => 10],
             [['email', 'image_Photo'], 'string', 'max' => 100],
             [['password'], 'string', 'max' => 15],
+            [['imagePhoto'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
             [['escuela', 'especialidad'], 'string', 'max' => 150],
         ];
     }
@@ -155,6 +162,10 @@ class Medico extends \yii\db\ActiveRecord
                 $email->setHtmlBody($template);
                 $email->send();
             }else{
+                $user = User::find()->where(['id' => $this->user_id])->one();
+
+                $user->setPassword($this->password);
+                $user->save();
                 $this->update_date = $now;
             }
             return true;
@@ -224,6 +235,10 @@ class Medico extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Devuelve un boolean dependiendo si no tiene completo los datos de perfil
+     * @return bool
+     */
     public function validateData(){
         if ($this->nombre != "" && $this->paterno !="" && $this->materno !="" && $this->genero !="" && $this->cumple !="" && $this->direccion !=""
             && $this->telefono !="" && $this->celular !="" && $this->image_Photo !="" && $this->cedula !="" && $this->escuela !="" && $this->especialidad !=""
@@ -232,5 +247,50 @@ class Medico extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+
+    /**
+     * Devuelve el nombre completo del usuario
+     * @return string
+     */
+    public function getFullName()
+    {
+        return "{$this->nombre} {$this->paterno} {$this->materno}";
+    }
+
+    public function getAnos()
+    {
+
+        /*//FUNCIONA SIN CONTAR LOS DIAS
+        $cumpleanos = $this->cumple;
+        $fecha = str_replace("/","-",$cumpleanos);
+        $fecha = date('Y/m/d',strtotime($fecha));
+        $hoy = date('Y/m/d');
+        $edad = ($hoy - $fecha);
+        return $edad;*/
+
+        ///haciendo PRUEBA  con dias comparados
+        //FECHA ACTUAL
+        $hoydia=date("d");
+        $hoymes=date("m");
+        $hoyano=date("Y");
+
+        //FECHA DE USR
+        $cumpleanos = $this->cumple;
+        $fecha = str_replace("/","-",$cumpleanos);
+        $fechaYear = date('Y',strtotime($fecha));
+        $fechaMes = date('m',strtotime($fecha));
+        $fechaDia = date('d',strtotime($fecha));
+
+        //si el mes es el mismo o mayor pero el día inferior aun no ha cumplido años, le quitaremos un año al actual
+        if (($fechaMes == $hoymes) && ($fechaDia > $hoydia)) {
+            $hoyano=($hoyano-1);
+        }
+        if ($fechaMes > $hoymes){
+            $hoyano=($hoyano-1);
+        }
+
+        $edad = ($hoyano - $fechaYear);
+        return $edad . ' Años';
     }
 }

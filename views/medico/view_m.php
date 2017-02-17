@@ -1,26 +1,20 @@
 <?php
 
-use kartik\file\FileInput;
-use messaging\shared\presenters\MaterialDesignPresenter;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Medico */
 
-$this->title = Yii::t('app', 'Editar', [
-    'modelClass' => 'Medico',
-]);
+
 ?>
 <div class="medico-view">
-    <?php if(isset($model->cumple)): ?> <span ng-init='cumple = "<?= $model->cumple ?>"'></span> <?php endif; ?>
-    <?php $form = ActiveForm::begin(); ?>
     <div class="card">
         <div class="card-heading text-capitalize blue darken-3">
             <h5 class="white-text" style="margin: 3px 0" >
                 Perfil médico
-                <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Guardar '), ['class' => $model->isNewRecord ? 'btn btn-primary btn-lg' : 'btn btn-danger pull-right']) ?>
+                <?= Html::a(Yii::t('app', 'Actualizar'), ['update-m', 'id' => $model->id], ['class' => 'btn btn-danger pull-right']) ?>
             </h5>
         </div>
         <div class="card-body">
@@ -28,21 +22,14 @@ $this->title = Yii::t('app', 'Editar', [
 
                 <div class="col-md-3">
                     <?php if($model->image_Photo != null && $model->image_Photo !== ""):?>
-                        <img src="<?= Url::base().'/img/homeo.png'?>" class="img-circle">
+                    <img src="<?= Url::base().'/img/homeo.png'?>" class="img-circle">
                     <?php else:?>
                         <?php if($model->genero == 1):?>
-                            <img src="<?= Url::base().'/img/men.png'?>" class="img-circle">
+                        <img src="<?= Url::base().'/img/men.png'?>" class="img-circle">
                         <?php else:?>
-                            <img src="<?= Url::base().'/img/woman.png'?>" class="img-circle">
+                        <img src="<?= Url::base().'/img/woman.png'?>" class="img-circle">
                         <?php endif; ?>
                     <?php endif; ?>
-                    <?= $form->field($model, 'imagePhoto')->widget(FileInput::className(), [
-                        'options' => ['accept' => 'image/*'],
-                        'pluginOptions' => [
-                            'showRemove' => false,
-                            'showUpload' => false
-                        ]
-                    ]) ?>
                 </div>
 
                 <div class="col-md-8" style="border-left: 3px solid #00acc1;">
@@ -54,28 +41,17 @@ $this->title = Yii::t('app', 'Editar', [
                             &nbsp;
                         </div>
                         <div class="col-md-12">
-                            <div class="col-md-2">
-                                <?= $form->field($model, 'nombre')->textInput([['maxlength' => true]])?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($model, 'paterno')->textInput([['maxlength' => true]])?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($model, 'materno')->textInput([['maxlength' => true]])?>
+                            <div class="col-md-3">
+                                <p> <b>Nombre: </b> <br><span class="text-capitalize"><?= $model->getFullName()?></span></p>
                             </div>
                             <div class="col-md-3">
-                                <?= $form->field($model, 'cumple')->textInput([
-                                    'ng-model' => 'cumple',
-                                    'uib-datepicker-popup' => 'dd/MM/yyyy',
-                                    'is-open' => 'popup.opened',
-                                    'ng-click' => 'open()',
-                                    'close-text' => Yii::t('app', 'Cerrar'),
-                                    'class' => ($model->cumple) ? 'ng-dirty fix-width-material-input form-control' : ''
-                                ]) ?>
+                                <p> <b>Fecha de nacimiento: </b> <br><span class="text-capitalize"><?= date_format(new DateTime($model->cumple), 'd-M-Y')?></span></p>
                             </div>
-
                             <div class="col-md-3">
-                                <?= $form->field($model, 'genero')->radioList([1=>'Hombre', 2=>'Mujer']) ?>
+                                <p> <b>Edad: </b> <br><span class="text-capitalize"><?= $model->getAnos() ?></span></p>
+                            </div>
+                            <div class="col-md-3">
+                                <p> <b>Género: </b> <br><span class="text-capitalize"><?= ($model->genero == 1)? 'Masculino':'Femenino'; ?></span></p>
                             </div>
                         </div>
                     </div>
@@ -89,13 +65,13 @@ $this->title = Yii::t('app', 'Editar', [
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+                                <p> <b>Nombre de usuario: </b> <br><span ><?= $model->username?></span></p>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+                                <p> <b>Correo electrónico: </b> <br><span ><?= $model->email?></span></p>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'password')->passwordInput() ?>
+                                <p> <b>Contraseña: </b> <br><span ><?= "******************"?></span></p>
                             </div>
                         </div>
                     </div>
@@ -109,13 +85,13 @@ $this->title = Yii::t('app', 'Editar', [
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+                                <p> <b>Correo electrónico: </b> <br><span ><?= $model->email?></span></p>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'celular')->textInput(['maxlength' => true]) ?>
+                                <p> <b>Teléfono celular: </b> <br><span ><?= $model->celular?></span></p>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
+                                <p> <b>Teléfono fijo: </b> <br><span ><?= $model->telefono ?></span></p>
                             </div>
                         </div>
                     </div>
@@ -129,13 +105,13 @@ $this->title = Yii::t('app', 'Editar', [
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'cedula')->textInput(['maxlength' => true]) ?>
+                                <p> <b>Cedula profesional: </b> <br><span ><?= $model->cedula?></span></p>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'escuela')->textInput(['maxlength' => true]) ?>
+                                <p> <b>Escuela: </b> <br><span ><?= $model->escuela?></span></p>
                             </div>
                             <div class="col-md-4">
-                                <?= $form->field($model, 'especialidad')->textInput(['maxlength' => true]) ?>
+                                <p> <b>Especialidad: </b> <br><span ><?= $model->especialidad?></span></p>
                             </div>
                         </div>
                     </div>
@@ -148,12 +124,15 @@ $this->title = Yii::t('app', 'Editar', [
                             &nbsp;
                         </div>
                         <div class="col-md-12">
-                            <?= $form->field($model, 'descripcion')->textarea(['maxlength' => true]) ?>
+                            <p>
+                                <b>Descripción: </b>
+                                <br>
+                                <span ><?= $model->descripcion?></span>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <?php ActiveForm::end(); ?>
 </div>

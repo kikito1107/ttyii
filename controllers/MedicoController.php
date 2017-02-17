@@ -59,6 +59,18 @@ class MedicoController extends Controller
     }
 
     /**
+     * Displays a single Medico model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewM($id)
+    {
+        return $this->render('view_m', [
+            'model' => $this->findModel($id)
+        ]);
+    }
+
+    /**
      * Creates a new Medico model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -106,7 +118,7 @@ class MedicoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view-m', 'id' => $model->id]);
         } else {
             return $this->render('update_medico', [
                 'model' => $model,

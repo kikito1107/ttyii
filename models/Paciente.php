@@ -118,6 +118,7 @@ class Paciente extends \yii\db\ActiveRecord
             'email' => Yii::t('app', 'Correo electrónico'),
             'password' => Yii::t('app', 'Contraseña'),
             'image_Photo' => Yii::t('app', 'Foto de perfil'),
+            'imagePhoto' => Yii::t('app', 'Foto de perfil'),
             'status' => Yii::t('app', 'Status'),
             'user_type' => Yii::t('app', 'Tipo de usuario'),
             'update_date' => Yii::t('app', 'Fecha de actualización'),

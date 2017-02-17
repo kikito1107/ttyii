@@ -75,8 +75,10 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
                                     <td><?= Yii::t('app', 'Aprovado') ?></td>
                                 <?php endif; ?>
                                 <td>
+                                    <?= Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['update', 'id' => $model->id,'paciente_id' => $paciente->id]),['data-method' => 'post'])?>
+
                                     <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['delete', 'id' => $model->id]),['data-method' => 'post'])?>
-                                    <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['update', 'id' => $model->id,'paciente_id' => $paciente->id]),['data-method' => 'post'])?>
+
                                 </td>
                             </tr>
                         </tbody>
