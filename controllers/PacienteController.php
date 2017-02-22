@@ -189,4 +189,19 @@ class PacienteController extends Controller
 
         return $this->redirect(['/paciente']);
     }
+
+    public function actionHistory($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->status == Paciente::STATUS_ACTIVE){
+            return $this->render('historial', [
+                'model' => $model
+            ]);
+        } else {
+            return $this->redirect(['paciente', [
+                'id' => $model->medico_id
+            ]]);
+        }
+    }
 }

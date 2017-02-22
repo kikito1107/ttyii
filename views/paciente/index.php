@@ -42,8 +42,8 @@ use yii\helpers\Url;
                             <?= $paciente->nss?>
                         </td>
                         <td>
-                            <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Realizar consulta'), ['consulta/create'], ['class' => 'pull-right btn btn-danger'])?>
-                            <?= Html::a(Yii::t('app', '<i class="fa fa-street-view"></i> Ver historial clinico'), ['error'], ['class' => 'pull-right btn btn-danger'])?>
+                            <?= Html::a(Yii::t('app', '<i class="fa fa-street-view"></i> Ver historial clinico'), ['history', 'id' => $paciente->id], ['class' => 'btn btn-primary'])?>
+                            <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Realizar consulta'), ['consulta/create'], ['class' => 'btn btn-danger'])?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

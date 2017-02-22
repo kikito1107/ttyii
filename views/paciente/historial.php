@@ -7,5 +7,14 @@
  */
 ?>
 <div class="div-historial">
-    <h4>Historial clinico</h4>
+    <div class="card">
+        <div class="card-heading">
+            <h4>Historial clinico de <b class="text-capitalize"><?= $model->getFullName()?></b></h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <h5>Historial de ultimas consultas</h5>
+            </div>
+        </div>
+    </div>
 </div>
