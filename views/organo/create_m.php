@@ -12,6 +12,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('app', 'Agregar órgano al sistema');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ver listado de organos'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="organo-create">
     <div class="card">

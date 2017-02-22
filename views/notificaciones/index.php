@@ -1,57 +1,52 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>notificaciones</h1>
-
-<p>
-    Ultimas notificaciones
-<div class="col-md-4 col-md-offset-2" style="padding-bottom: 100px">
-    <ul>
-        <li>
-            <div class="card">
-                <div class="card-heading">
-                    <h4>Notificación - <span class="label label-danger">tipo</span></h4>
-                </div>
-                <div class="card-body">
-                    Descripción
-                    <a href="" class="disabled">link</a>
-                </div>
+<div class="card">
+    <div class="card-heading">
+        <h5>Alerta de notificaciones</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6" style="padding-bottom: 100px">
+                <ul style="list-style: none;">
+                    <li  class="col-md-12" style="border: 2px solid #08464e;margin-bottom: 5px;background: #dcdada;">
+                        <h6 style="margin: 8px 0px;border-bottom: 2px solid;">Notificación - <span class="label label-danger">tipo</span></h6>
+                        <div class="row" style="height: 65px">
+                            <div class="col-md-12">
+                                Descripción
+                                <a href="" class="disabled">link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li  class="col-md-12" style="border: 2px solid #08464e;margin-bottom: 5px;background: #dcdada;">
+                        <h6 style="margin: 8px 0px;border-bottom: 2px solid;">Notificación - <span class="label label-danger">tipo</span></h6>
+                        <div class="row" style="height: 65px">
+                            <div class="col-md-12">
+                                Descripción
+                                <a href="" class="disabled">link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li  class="col-md-12" style="border: 2px solid #08464e;margin-bottom: 5px;background: #dcdada;">
+                        <h6 style="margin: 8px 0px;border-bottom: 2px solid;">Notificación - <span class="label label-danger">tipo</span></h6>
+                        <div class="row" style="height: 65px">
+                            <div class="col-md-12">
+                                Descripción
+                                <a href="" class="disabled">link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li  class="col-md-12" style="border: 2px solid #08464e;margin-bottom: 5px;background: #dcdada;">
+                        <h6 style="margin: 8px 0px;border-bottom: 2px solid;">Notificación - <span class="label label-danger">tipo</span></h6>
+                        <div class="row" style="height: 65px">
+                            <div class="col-md-12">
+                                Descripción
+                                <a href="" class="disabled">link</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </li>
-        <li>
-            <div class="card">
-                <div class="card-heading">
-                   <h4>Notificación - <span class="label label-primary">tipo</span></h4>
-                </div>
-                <div class="card-body">
-                    Descripción
-                    <a href="" class="disabled">link</a>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="card">
-                <div class="card-heading">
-                   <h4>Notificación - <span class="label label-success">tipo</span></h4>
-                </div>
-                <div class="card-body">
-                    Descripción
-                    <a href="" class="disabled">link</a>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="card">
-                <div class="card-heading">
-                    <h4>Notificación - <span class="label label-danger">tipo</span></h4>
-                </div>
-                <div class="card-body">
-                    Descripción
-                    <a href="" class="disabled">link</a>
-                </div>
-            </div>
-
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
-</p>
