@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Citas;
 use app\models\Paciente;
 use kartik\date\DatePicker;
 use messaging\shared\presenters\MaterialDesignPresenter;
@@ -41,7 +42,7 @@ $medico = 1;
         </div>
 
         <div class="col-md-5">
-            <?= $form->field($model, 'hora')->dropDownList(\app\models\Citas::getHours()) ?>
+            <?= $form->field($model, 'hora')->dropDownList(Citas::getHours()) ?>
         </div>
     </div>
 

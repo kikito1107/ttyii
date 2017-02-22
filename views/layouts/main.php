@@ -203,15 +203,15 @@ AppAsset::register($this);
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
-<!--                        <li>-->
-<!--                            <a href="--><?//= Url::to(['/paciente']) ?><!--" class="ripple">-->
-<!--                                <em class="fa fa-wheelchair"></em>-->
-<!--                                <span>--><?//= Yii::t('app', 'Pacientes') ?><!--</span>-->
-<!--                                <span class="md-ripple"></span>-->
-<!--                            </a>-->
-<!--                        </li>-->
                         <li>
-                            <a href="<?= Url::to(['/repertorio/index-m']) ?>" class="ripple">
+                            <a href="<?= Url::to(['/paciente']) ?>" class="ripple">
+                                <em class="fa fa-wheelchair"></em>
+                                <span><?= Yii::t('app', 'Pacientes') ?></span>
+                                <span class="md-ripple"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= Url::to(['/repertorio']) ?>" class="ripple">
                                 <em class="fa fa-book"></em>
                                 <span><?= Yii::t('app', 'Repertorio') ?></span>
                                 <span class="md-ripple"></span>

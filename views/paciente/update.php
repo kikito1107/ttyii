@@ -9,17 +9,15 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Paciente */
-
-
 ?>
 <div class="paciente-view">
     <?php if(isset($model->cumple)): ?> <span ng-init='cumple = "<?= $model->cumple ?>"'></span> <?php endif; ?>
+    <?php if(isset($model->medico_id)): ?> <span ng-init='medico_id = "<?= $model->medico_id?>"'></span> <?php endif; ?>
     <?php $form = ActiveForm::begin(); ?>
-    <div class="card">
+    <div class="card" style="margin-bottom: 150px">
         <div class="card-heading text-capitalize blue darken-3">
             <h5 class="white-text" style="margin: 3px 0" >
                 Información del Paciente
-                <?= Html::a(Yii::t('app', 'Actualizar'), ['update-m', 'id' => $model->id], ['class' => 'btn btn-danger pull-right']) ?>
             </h5>
         </div>
         <div class="card-body">
@@ -157,9 +155,13 @@ use yii\widgets\ActiveForm;
                                 <?= $form->field($model,'medico_id')
                                     ->dropDownList(ArrayHelper::map(Medico::find()->asArray()->all(), 'id', 'nombre'), [
                                         'prompt' => Yii::t( 'app', 'Seleccionar' ),
-                                        'ng-model' => 'organo_padre'
+                                        'ng-model' => 'medico_id'
                                     ])?>
                             </p>
+                        </div>
+                        <div class="col-md-12 text-ceter">
+                            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear cita') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-danger']) ?>
+                            <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-danger pull-right']) ?>
                         </div>
                     </div>
                 </div>

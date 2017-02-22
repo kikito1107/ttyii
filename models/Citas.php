@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use DateTime;
 use messaging\shared\helpers\Dates;
 use Yii;
 
@@ -64,6 +65,9 @@ class Citas extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+        $dia = date("d-m-y", strtotime(str_replace('/','-',$this->dia)));
+        $mes = date("m", strtotime(str_replace('/','-',$this->dia)));
+        $ano = date("y", strtotime(str_replace('/','-',$this->dia)));
 
         if(parent::beforeSave($insert)){
 
@@ -73,6 +77,7 @@ class Citas extends \yii\db\ActiveRecord
             $this->dia = Dates::convertSqlDate($this->dia);
 
             $this->dia = date("Y-m-d H:i:s", strtotime(str_replace('/','-',$this->dia)));
+
 
             if ($this->isNewRecord) {
 
