@@ -11,10 +11,8 @@ class m170222_001349_consulta extends Migration
             'paciente_id' => $this->integer(11)->defaultValue(null),
             'medico_id' => $this->integer(11)->defaultValue(null),
             'cita_id' => $this->integer(11)->defaultValue(null),
-            'update_date' => $this->dateTime()->defaultValue(null),
             'create_date' => $this->dateTime()->notNull(),
-
-
+            'update_date' => $this->dateTime()->defaultValue(null),
         ], 'ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1');
 
         $this->addForeignKey('{{%paciente_ibfk_1}}' , '{{%consulta}}' , 'paciente_id' , '{{%paciente}}' , 'id' );
@@ -25,19 +23,6 @@ class m170222_001349_consulta extends Migration
 
     public function down()
     {
-        echo "m170222_001349_consulta No se puede revertir.\n";
-
-        return false;
     }
 
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

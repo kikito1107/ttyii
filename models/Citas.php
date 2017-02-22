@@ -39,8 +39,8 @@ class Citas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dia', 'hora', 'paciente_id', 'medico_id'], 'required'],
-            [['dia'], 'date', 'minString' => date('d/m/y', strtotime('3 Days')), 'maxString' => date('d/m/y', strtotime("3 Months")), 'format' => 'd/m/y'],
+            [[ 'hora', 'paciente_id', 'medico_id'], 'required'],
+//            [['dia'], 'date', 'minString' => date('d/m/y', strtotime('3 Days')), 'maxString' => date('d/m/y', strtotime("3 Months")), 'format' => 'd/m/y'],
             [['paciente_id', 'medico_id', 'hora', 'status'], 'integer'],
             [['dia', 'update_date', 'create_date'], 'safe'],
         ];

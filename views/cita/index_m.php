@@ -56,7 +56,6 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
                                 <tr >
                                     <th class="text-center" colspan="3"><h5>Tus citas pendientes</h5></th>
                                 </tr>
-
                                 <tr >
                                     <th>Fecha</th>
                                     <th>Hora</th>
@@ -65,10 +64,8 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
 
                             </thead>
                             <tbody>
-
                             </tbody>
                             <tr >
-
                                 <?php foreach ($pendientes as $pendiente): ?>
                                 <td>
                                     <?= $pendiente->dia ?>
@@ -78,9 +75,7 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
                                 </td>
                                 <td>
                                     <?php if($pendiente->status == Citas::STATUS_PENDING): ?>
-                                        <i class="fa fa-check" aria-hidden="true"></i> Activar
-                                        <br>
-                                        <i class="fa fa-times" aria-hidden="true"></i> Descativar
+                                    <?= Html::a(Yii::t('app', '<i class="fa fa-check" aria-hidden="true"></i> Activar'), ['/cita/accept', 'id' => $pendiente->id], ['class' => 'btn btn-success']) ?>
                                 </td>
                             </tr>
                                 <?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>

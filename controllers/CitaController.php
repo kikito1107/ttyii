@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Paciente;
 use app\models\Medico;
+use messaging\shared\helpers\Dates;
 use Yii;
 use app\models\Citas;
 use app\models\CitasSearch;
@@ -73,6 +74,38 @@ class CitaController extends Controller
         ]);
     }
 
+    public function actionAccept($id)
+    {
+        $cita = Citas::find()->where(['id' => $id])->one();
+        $cita->setAttribute('status', 3);
+//        $cita->status = 3;
+        $cita->save();
+
+//        var_dump($cita->save());exit;
+
+        if ($cita->save()) {
+            $medico = Medico::find()->where(['id' => $cita->medico_id])->one();
+            // Busqueda de todas las citas asociadas a el médico
+            $citas_pendientes = Citas::find()->where(['medico_id' => $medico->id])
+                ->where(['status' => Citas::STATUS_PENDING])
+                ->all();
+            $citas_canceladas = Citas::find()->where(['medico_id' => $medico->id])
+                ->where(['status' => Citas::STATUS_CANCEL])
+                ->all();
+            $citas_aprobadas = Citas::find()->where(['medico_id' => $medico->id])
+                ->where(['status' => Citas::STATUS_APROVED])
+                ->all();
+
+            return $this->render('index_m', [
+                'pendientes' => $citas_pendientes,
+                'canceladas' => $citas_canceladas,
+                'aprobadas' => $citas_aprobadas
+            ]);
+        } else{
+            var_dump($cita->dia);
+            var_dump($cita->getErrors());exit;
+        }
+    }
 
     /**
      * Displays a single Citas model.

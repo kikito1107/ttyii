@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Consulta;
 use app\models\Mail;
 use app\models\Medico;
+use app\models\Somatometria;
 use auth\components\User;
 use Yii;
 use app\models\Paciente;
@@ -195,8 +197,15 @@ class PacienteController extends Controller
         $model = $this->findModel($id);
 
         if ($model->status == Paciente::STATUS_ACTIVE){
+
+            $somatrometia = Somatometria::find()->where(['paciente_id' => $model->id])->all();
+
+            $consultas = Consulta::find()->where(['paciente_id' => $model->id])->all();
+
             return $this->render('historial', [
-                'model' => $model
+                'model' => $model,
+                'sometria' => $somatrometia,
+                'consultas' => $consultas
             ]);
         } else {
             return $this->redirect(['paciente', [
