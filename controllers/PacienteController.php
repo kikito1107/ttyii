@@ -11,6 +11,7 @@ use app\models\PacienteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PacienteController implements the CRUD actions for Paciente model.
@@ -86,13 +87,24 @@ class PacienteController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if (Yii::$app->request->isPost) {
+            $model->imagePhoto = UploadedFile::getInstance($model, 'imagePhoto');
+
+            if(!empty($model->imagePhoto)) {
+                $model->upload('imagePhoto', 'image_Photo');
+            }
+
+
+            $model->load(Yii::$app->request->post());
+
+            if($model->validate() && $model->save()) {
+                return $this->redirect(['profile', 'id' => $model->id]);
+            }
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

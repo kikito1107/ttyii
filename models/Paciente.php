@@ -6,6 +6,7 @@ use auth\models\User;
 use messaging\shared\helpers\Dates;
 use yii\db\ActiveRecord;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%paciente}}".
@@ -88,12 +89,13 @@ class Paciente extends \yii\db\ActiveRecord
             [['nombre', 'paterno', 'materno', 'genero'], 'required'],
             [['cumple', 'update_date', 'create_date'], 'safe'],
             [['alergias'], 'string'],
-            [['nombre', 'paterno', 'materno', 'nss'], 'string', 'max' => 50],
+            [['nombre', 'paterno', 'materno', 'nss', 'notificaciones'], 'string', 'max' => 50],
             [['direccion'], 'string', 'max' => 250],
             [['telefono', 'celular'], 'string', 'max' => 10],
             [['email', 'image_Photo'], 'string', 'max' => 100],
             [['email'], 'email'],
             [['password'], 'string', 'max' => 15],
+            [['imagePhoto'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
             [['email'], 'unique', 'on' => 'create', 'targetClass' => 'auth\models\User', 'message' => Yii::t('app', 'Este email ya se encuentra registrado')]
         ];
     }
@@ -125,7 +127,7 @@ class Paciente extends \yii\db\ActiveRecord
             'create_date' => Yii::t('app', 'Fecha de creación'),
             'nss' => Yii::t('app', 'Nùmero de seguridad social'),
             'alergias' => Yii::t('app', 'Alergias'),
-            'notificaciones' => Yii::t('app', 'Notificaciones pendientes'),
+            'notificaciones' => Yii::t('app', 'Número de folio'),
         ];
     }
 

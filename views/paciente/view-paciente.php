@@ -138,7 +138,7 @@ $this->title = $model->getFullName();
                             <p>
                                 <b>Nombre: </b>
                                 <br>
-                                <span ><?= $model->medico_id?></span>
+                                <span class="text-capitalize"><?= \app\models\Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
                             </p>
                         </div>
                     </div>
