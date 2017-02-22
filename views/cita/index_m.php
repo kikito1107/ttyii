@@ -49,18 +49,25 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
         <?php else: ?>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4 text-center">
-                    <h4>Tus citas pendientes</h4>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
+                <div class="col-md-5">
+
+                        <table class="table table-striped" >
+                            <thead class="white-text blue darken-3">
+                                <tr >
+                                    <th class="text-center" colspan="3"><h5>Tus citas pendientes</h5></th>
+                                </tr>
+
+                                <tr >
                                     <th>Fecha</th>
                                     <th>Hora</th>
                                     <th>Pendiente</th>
                                 </tr>
-                            </thead>
 
-                            <tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tr >
 
                                 <?php foreach ($pendientes as $pendiente): ?>
                                 <td>
@@ -76,21 +83,22 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
                                         <i class="fa fa-times" aria-hidden="true"></i> Descativar
                                 </td>
                             </tr>
-                                    <?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>
-                                        <p>Pendiente a que el usuario cambie la fecha</p>
-                                    <!--< ?php else:?>
-                                    <!--Cita aceptada-->
-                                    <?php endif; ?>
-                                    <?php endforeach; ?>
+                                <?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>
+                                    <p>Pendiente a que el usuario cambie la fecha</p>
+                                <!--< ?php else:?>
+                                <!--Cita aceptada-->
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </table>
 
                 </div>
 
-                <div class="col-md-4 text-center col-md-offset-4">
-                    <h4>Tus citas Aprobadas</h4>
-
-                    <table class="table table-striped">
-                        <thead>
+                <div class="col-md-5 text-center col-md-offset-2">
+                    <table class="table table-striped" >
+                        <thead class="white-text blue darken-3">
+                        <tr >
+                            <th class="text-center" colspan="3"><h5>Tus citas aprovadas</h5></th>
+                        </tr>
                         <tr>
                             <th>Fecha</th>
                             <th>Hora</th>
