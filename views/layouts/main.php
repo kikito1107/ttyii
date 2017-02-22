@@ -165,7 +165,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li>
-                            <a href="<?= Url::to(['/']) ?>" class="ripple">
+                            <a href="<?= Url::to(['/consulta/consulta']) ?>" class="ripple">
                                 <em class="fa fa-stethoscope"></em>
                                 <span><?= Yii::t('app', 'Consultas') ?></span>
                                 <span class="md-ripple"></span>

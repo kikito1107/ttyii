@@ -42,13 +42,19 @@ class CitaController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $id = \Yii::$app->user->id;
         $paciente = Paciente::find()->where(['user_id' => $id])->one();
+
         $cita = Citas::find()->where(['paciente_id' => $paciente->id])
             ->where(['status' => Citas::STATUS_PENDING])
+            ->one();
+
+        $aprobada = Citas::find()->where(['paciente_id' => $paciente->id])
+            ->where(['status' => Citas::STATUS_APROVED])
             ->one();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'model' => $cita
+            'model' => $cita,
+            'aprobada' => $aprobada
         ]);
     }
 
@@ -67,6 +73,7 @@ class CitaController extends Controller
             ->where(['status' => Citas::STATUS_APROVED])
             ->all();
 
+//        var_dump($citas_aprobadas);exit;
         return $this->render('index_m', [
             'pendientes' => $citas_pendientes,
             'canceladas' => $citas_canceladas,
@@ -77,13 +84,9 @@ class CitaController extends Controller
     public function actionAccept($id)
     {
         $cita = Citas::find()->where(['id' => $id])->one();
-        $cita->setAttribute('status', 3);
-//        $cita->status = 3;
-        $cita->save();
+//        var_dump($cita->status);exit;
 
-//        var_dump($cita->save());exit;
-
-        if ($cita->save()) {
+//        if ($cita->save()) {
             $medico = Medico::find()->where(['id' => $cita->medico_id])->one();
             // Busqueda de todas las citas asociadas a el médico
             $citas_pendientes = Citas::find()->where(['medico_id' => $medico->id])
@@ -95,16 +98,17 @@ class CitaController extends Controller
             $citas_aprobadas = Citas::find()->where(['medico_id' => $medico->id])
                 ->where(['status' => Citas::STATUS_APROVED])
                 ->all();
+//            var_dump($citas_aprobadas);exit;
 
             return $this->render('index_m', [
                 'pendientes' => $citas_pendientes,
                 'canceladas' => $citas_canceladas,
                 'aprobadas' => $citas_aprobadas
             ]);
-        } else{
-            var_dump($cita->dia);
-            var_dump($cita->getErrors());exit;
-        }
+//        } else{
+//            var_dump($cita->dia);
+//            var_dump($cita->getErrors());exit;
+//        }
     }
 
     /**

@@ -22,6 +22,11 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
     $citas_pendientes = false;
 }
 
+if ($aprobada != null) {
+    $citas_aprobadas = true;
+} else {
+    $citas_aprobadas = false;
+}
 ?>
 <div class="citas-index">
     <div class="card">
@@ -45,48 +50,53 @@ if(Citas::find()->where(['paciente_id' => $paciente->id ])->one() != null){
             </div>
         </div>
         <?php else: ?>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h4>Tus citas</h4>
+            <?php if ($citas_aprobadas == true): ?>
+                Tu cita ya fue aprobada por tu médico
+            <?php else: ?>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>Tus citas</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Día</th>
+                                    <th>Hora</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><?= date_format(date_create($model->dia) ,'d-M-y') ?></td>
+                                    <td><?= Citas::getHours()[$model->hora]?></td>
+                                    <?php if ($model->status == 1): ?>
+                                        <td><?= Yii::t('app', 'Pendiente') ?></td>
+                                    <?php elseif ($model->status == 2): ?>
+                                        <td><?= Yii::t('app', 'Cancelado') ?></td>
+                                    <?php else: ?>
+                                        <td><?= Yii::t('app', 'Aprovado') ?></td>
+                                    <?php endif; ?>
+                                    <td>
+                                        <?= Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['update', 'id' => $model->id,'paciente_id' => $paciente->id]),['data-method' => 'post'])?>
+
+                                        <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['delete', 'id' => $model->id]),['data-method' => 'post'])?>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            <?php endif; ?>
 
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Día</th>
-                                <th>Hora</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><?= date_format(date_create($model->dia) ,'d-M-y') ?></td>
-                                <td><?= Citas::getHours()[$model->hora]?></td>
-                                <?php if ($model->status == 1): ?>
-                                    <td><?= Yii::t('app', 'Pendiente') ?></td>
-                                <?php elseif ($model->status == 2): ?>
-                                    <td><?= Yii::t('app', 'Cancelado') ?></td>
-                                <?php else: ?>
-                                    <td><?= Yii::t('app', 'Aprovado') ?></td>
-                                <?php endif; ?>
-                                <td>
-                                    <?= Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['update', 'id' => $model->id,'paciente_id' => $paciente->id]),['data-method' => 'post'])?>
-
-                                    <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['delete', 'id' => $model->id]),['data-method' => 'post'])?>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
         <?php endif; ?>
     </div>
 </div>

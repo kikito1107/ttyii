@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Medico;
 use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -138,7 +139,11 @@ $this->title = $model->getFullName();
                             <p>
                                 <b>Nombre: </b>
                                 <br>
-                                <span class="text-capitalize"><?= \app\models\Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
+                                <?php if($model->medico_id == null): ?>
+                                    <span>Debes de seleccionar a un médico</span>
+                                <?php else: ?>
+                                    <span class="text-capitalize"><?= Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
+                                <?php endif; ?>
                             </p>
                         </div>
                     </div>
