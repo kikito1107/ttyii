@@ -4,12 +4,13 @@ use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use app\models\Medico;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Paciente */
 
 $this->title = $model->getFullName();
-
+//var_dump($model); exit;
 
 ?>
 <div class="paciente-view">
@@ -138,7 +139,8 @@ $this->title = $model->getFullName();
                             <p>
                                 <b>Nombre: </b>
                                 <br>
-                                <span class="text-capitalize"><?= \app\models\Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
+
+                                <span class="text-capitalize"><?= Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
                             </p>
                         </div>
                     </div>
