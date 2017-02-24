@@ -112,9 +112,6 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
                             </td>
                             <td>
                                 <?php if($aprobada->status == Citas::STATUS_APROVED): ?>
-                                <i class="fa fa-check" aria-hidden="true"></i> Activar
-                                <br>
-                                <i class="fa fa-times" aria-hidden="true"></i> Descativar
                             </td>
                         </tr>
                         <!--< ?php elseif ($pendiente->status == Citas::STATUS_CANCEL): ?>-->
@@ -125,7 +122,6 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
                         <?php endforeach; ?>
                     </table>
                 </div>
-
             </div>
         </div>
         <?php endif; ?>

@@ -17,7 +17,15 @@
                     <h5>Datos personales</h5>
                 </div>
                 <div class="col-md-12">
-                    <?= print_r($model)?>
+                    <div class="col-md-4">
+                        <p> <b>Alergias: </b> <br><span ><?= $model->alergias?></span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p> <b>Estatura: </b> <br><span ><?= $model->alergias?></span></p>
+                        <p> <b>Peso: </b> <br><span ><?= $model->alergias?></span></p>
+                        <p> <b>Indice de masa corporal: </b> <br><span ><?= $model->alergias?></span></p>
+                        <p> <b>Frecuencia cardíaca: </b> <br><span ><?= $model->alergias?></span></p>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -34,6 +42,7 @@
                     <h5>Historial de ultimas consultas</h5>
                 </div>
                 <div class="col-md-12">
+                    &nbsp;
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
