@@ -13,7 +13,9 @@ class m170215_042629_somatometria extends Migration
             'peso' => $this->integer(10)->notNull(),
             'temperatura' => $this->integer(10)->notNull(),
             'frecCardi' => $this->integer(10)->notNull(),
-            'menstruacion' => $this->dateTime(),
+            'menstruacion' => $this->integer(10)->notNull(),
+            'update_date' => $this->dateTime()->defaultValue(null),
+            'create_date' => $this->dateTime()->notNull(),
 
         ],'ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1');
         $this->addForeignKey('{{%sometria_ibfk_1}}' , '{{%somatometria}}', 'paciente_id' , '{{%paciente}}' , 'id' );
@@ -21,5 +23,6 @@ class m170215_042629_somatometria extends Migration
 
     public function down()
     {
+        $this->dropTable('{{%somatometria}}');
     }
 }

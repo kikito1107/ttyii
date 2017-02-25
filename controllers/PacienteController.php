@@ -49,6 +49,21 @@ class PacienteController extends Controller
     }
 
     /**
+     * Lists all Paciente models.
+     * @return mixed
+     */
+    public function actionIndexAdmin()
+    {
+        $searchModel = new PacienteSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index_a', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single Paciente model.
      * @param integer $id
      * @return mixed

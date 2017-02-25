@@ -32,8 +32,9 @@ class Somatometria extends \yii\db\ActiveRecord
     {
         return [
             [['paciente_id', 'estatura', 'peso', 'temperatura', 'frecCardi'], 'required'],
-            [['paciente_id', 'estatura', 'peso', 'temperatura', 'frecCardi'], 'integer'],
-            [['menstruacion'], 'safe'],
+            [['estatura'], 'string'],
+            [['paciente_id', 'peso', 'temperatura', 'frecCardi', 'menstruacion'], 'integer'],
+            [['update_date', 'create_date'], 'safe'],
         ];
     }
 

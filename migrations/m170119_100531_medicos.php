@@ -36,7 +36,6 @@ class m170119_100531_medicos extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%medico}}');
     }
 
     /*

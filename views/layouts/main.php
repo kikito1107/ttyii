@@ -204,7 +204,7 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li>
-                            <a href="<?= Url::to(['/paciente']) ?>" class="ripple">
+                            <a href="<?= Url::to(['/paciente/index-admin']) ?>" class="ripple">
                                 <em class="fa fa-wheelchair"></em>
                                 <span><?= Yii::t('app', 'Pacientes') ?></span>
                                 <span class="md-ripple"></span>

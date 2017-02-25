@@ -31,7 +31,7 @@ class m170119_064948_pro extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%profile}}');
+
     }
     /*
     // Use safeUp/safeDown to run migration code within a transaction
