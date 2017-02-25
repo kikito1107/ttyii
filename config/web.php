@@ -76,7 +76,7 @@ $config = [
                 'host' => 'smtp.gmail.com',
                 'username' => 'kikito110792@gmail.com',
                 'password' => 'abdba91843',
-                'port' => '587',
+                'port' => '587',//465-587
                 'encryption' => 'tls',
             ]
             //Yii:: $app ->mailer->compose( 'contact/html' , [ 'contactForm' => $form ]) ->setFrom( 'from@domain.com' ) ->setTo( $form ->email) ->setSubject( $form ->subject) ->send();

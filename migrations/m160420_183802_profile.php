@@ -31,6 +31,7 @@ class m160420_183802_profile extends Migration
         ], 'ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1');
 
         $this->addForeignKey('{{%paciente_ibfk_1}}' , '{{%paciente}}' , 'user_id' , '{{%user}}' , 'id' );
+        $this->addForeignKey('{{%paciente_ibfk_2}}' , '{{%paciente}}' , 'medico_id' , '{{%medico}}' , 'id' );
 
     }
 

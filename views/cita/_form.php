@@ -45,6 +45,61 @@ $medico = 1;
             <?= $form->field($model, 'hora')->dropDownList(Citas::getHours()) ?>
         </div>
     </div>
+    <div class="row">
+        <p>pruebas</p>
+        <?php
+            $month = date('m');
+            $dia = date('N');
+            $mes1 = cal_days_in_month(CAL_GREGORIAN, $month, date('Y')); // 31
+            $mes2 = cal_days_in_month(CAL_GREGORIAN, $month+1, date('Y')); // 31
+            $mes3 = cal_days_in_month(CAL_GREGORIAN, $month+2, date('Y')); // 31
+
+            $meses = ['Enero', 'Febrero', 'Marzo', 'Abrl', 'Mayo'];
+        //echo $mes1 .",".$mes2.", ".$mes3;
+
+
+        $inicial01 = date('N', strtotime('2017-02-01'));
+        //var_dump($inicial01);
+        echo '
+            <div class="col-md-3">
+            <table class="table table-bordered">
+                <thead>
+                <tr class="blue darken-1"><th class="white-text text-center" colspan="7">'.$meses[$month-1].'</th></tr>
+                <tr>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>M</th>
+                    <th>M</th>
+                    <th>J</th>
+                    <th>V</th>
+                    <th>S</th>
+                </tr>
+                </thead>
+                <tbody>';
+                $k=1;
+                for ($i = 1; $i <= 6; $i++){
+                    echo '<tr>';
+                    for ($j = 1; $j <= 7; $j++){
+                        if ($k != 1){
+                            echo '<td>'.$k++.'</td>';
+                        }else {
+                            echo '<td>';
+                            if ($j > $inicial01) {
+                                echo $k++;
+                            }
+                            echo '</td>';
+                        }
+                    }
+                    echo '</tr>';
+                }
+            echo '</tbody>
+            </table>
+            </div>
+        ';
+
+        ?>
+
+    </div>
 
 
     <div class="row ">

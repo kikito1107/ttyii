@@ -5,12 +5,13 @@ use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use app\models\Medico;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Paciente */
 
 $this->title = $model->getFullName();
-
+//var_dump($model); exit;
 
 ?>
 <div class="paciente-view">
@@ -139,11 +140,16 @@ $this->title = $model->getFullName();
                             <p>
                                 <b>Nombre: </b>
                                 <br>
+<<<<<<< HEAD
+
+                                <span class="text-capitalize"><?= Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
+=======
                                 <?php if($model->medico_id == null): ?>
                                     <span>Debes de seleccionar a un médico</span>
                                 <?php else: ?>
                                     <span class="text-capitalize"><?= Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
                                 <?php endif; ?>
+>>>>>>> 328d528ba65c45f62b91965a35599d5ca7b43c7e
                             </p>
                         </div>
                     </div>
