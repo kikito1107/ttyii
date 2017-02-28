@@ -12,9 +12,30 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 $id = (int)$id;
 $paciente =  Paciente::find()->where(['id' => $id])->one();
+$month = date('m');
 
-$paciente = $paciente->id;
-$medico = 1;
+$months = ['Enero', 'Febrero', 'Marzo', 'Abrl', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+$meses = array(
+    array(
+        'name' => $months[$month-1],
+        'duration' => cal_days_in_month(CAL_GREGORIAN, $month, date('Y')),
+        'inition' => date('N', strtotime(date('Y-'.$month.'-01'))),
+        'day' => date('d')
+    ),
+
+    array(
+        'name' => $months[(int) $month],
+        'duration' => cal_days_in_month(CAL_GREGORIAN, $month+1, date('Y')),
+        'inition' => date('N', strtotime(date('Y-'.($month+1).'-01')))
+    ),
+
+    array(
+        'name' => $months[$month+1],
+        'duration' => cal_days_in_month(CAL_GREGORIAN, $month+2, date('Y')),
+        'inition' => date('N', strtotime(date('Y-'.($month+2).'-01')))
+    )
+);
 
 ?>
 
@@ -22,9 +43,9 @@ $medico = 1;
     <?php if(isset($model->dia)): ?> <span ng-init='dia = "<?= $model->dia ?>"'></span> <?php endif; ?>
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'paciente_id')->hiddenInput(['value' => $paciente])->label(false) ?>
+    <?= $form->field($model, 'paciente_id')->hiddenInput(['value' => $paciente->id])->label(false) ?>
 
-    <?= $form->field($model, 'medico_id')->hiddenInput(['value' => $medico])->label(false) ?>
+    <?= $form->field($model, 'medico_id')->hiddenInput(['value' => $paciente->medico_id])->label(false) ?>
 
     <div class="row">
         <div class="col-md-5 col-xs-12">
@@ -46,25 +67,11 @@ $medico = 1;
         </div>
     </div>
     <div class="row">
-        <p>pruebas</p>
-        <?php
-            $month = date('m');
-            $dia = date('N');
-            $mes1 = cal_days_in_month(CAL_GREGORIAN, $month, date('Y')); // 31
-            $mes2 = cal_days_in_month(CAL_GREGORIAN, $month+1, date('Y')); // 31
-            $mes3 = cal_days_in_month(CAL_GREGORIAN, $month+2, date('Y')); // 31
-
-            $meses = ['Enero', 'Febrero', 'Marzo', 'Abrl', 'Mayo'];
-        //echo $mes1 .",".$mes2.", ".$mes3;
-
-
-        $inicial01 = date('N', strtotime('2017-02-01'));
-        //var_dump($inicial01);
-        echo '
-            <div class="col-md-3">
+        <?php foreach ($meses as $mes): ?>
+        <div class="col-md-4">
             <table class="table table-bordered">
                 <thead>
-                <tr class="blue darken-1"><th class="white-text text-center" colspan="7">'.$meses[$month-1].'</th></tr>
+                <tr class="blue darken-1"><th class="white-text text-center" colspan="7"><?= $mes['name']?></th></tr>
                 <tr>
                     <th>D</th>
                     <th>L</th>
@@ -75,30 +82,34 @@ $medico = 1;
                     <th>S</th>
                 </tr>
                 </thead>
-                <tbody>';
-                $k=1;
-                for ($i = 1; $i <= 6; $i++){
-                    echo '<tr>';
-                    for ($j = 1; $j <= 7; $j++){
-                        if ($k != 1){
-                            echo '<td>'.$k++.'</td>';
-                        }else {
-                            echo '<td>';
-                            if ($j > $inicial01) {
-                                echo $k++;
-                            }
-                            echo '</td>';
-                        }
-                    }
-                    echo '</tr>';
-                }
-            echo '</tbody>
+                <tbody>
+                    <?php $k = 1; ?>
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                    <tr>
+                        <?php for ($j = 1; $j <= 7; $j++): ?>
+                            <?php if ($k != 1): ?>
+                                <?php if ($k > $mes['duration']): ?>
+                                    <td></td>
+                                <?php else: ?>
+                                    <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <?php if ($j > $mes['inition']): ?>
+                                    <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
+                                <?php else: ?>
+                                    <td></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </tr>
+                    <?php endfor; ?>
+                    <?php if ($k <= $mes['duration']): ?>
+                        <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
+                    <?php endif; ?>
+                </tbody>
             </table>
-            </div>
-        ';
-
-        ?>
-
+        </div>
+        <?php endforeach; ?>
     </div>
 
 
