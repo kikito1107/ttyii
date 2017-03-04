@@ -10,14 +10,14 @@ gulp.task('browserify', function () {
         .pipe(gulp.dest('./../web/js/'));
 });
 
-gulp.task('sass', function () {
-    return sass('sass/site.scss')
-        .pipe(gulp.dest('./../web/css'));
-});
+// gulp.task('sass', function () {
+//     return sass('sass/site.scss')
+//         .pipe(gulp.dest('./../web/css'));
+// });
 
 gulp.task('watch', function () {
     gulp.watch('app/**/*.js', ['browserify']);
-    gulp.watch('sass/*.scss', ['sass']);
+    // gulp.watch('sass/*.scss', ['sass']);
 });
 
-gulp.task('default', ['browserify', 'sass', 'watch']);
+gulp.task('default', ['browserify', 'watch']);

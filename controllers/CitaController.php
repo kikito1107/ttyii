@@ -154,14 +154,17 @@ class CitaController extends Controller
     public function actionCreateM($id)
     {
         $medico = Medico::find()->where(['user_id' => $id])->one();
+
+        $pacientes = Paciente::find()->where(['medico_id' => $medico->id])->all();
         $model = new Citas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect('index-m');
+            return $this->redirect('index_m');
         } else {
-            return $this->render('create-m', [
+            return $this->render('create_m', [
                 'model' => $model,
-                'id' => $medico->$id,
+                'id' => $medico->id,
+                'pacientes' => $pacientes
             ]);
         }
     }

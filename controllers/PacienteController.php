@@ -213,7 +213,7 @@ class PacienteController extends Controller
 
         if ($model->status == Paciente::STATUS_ACTIVE){
 
-            $somatrometia = Somatometria::find()->where(['paciente_id' => $model->id])->all();
+            $somatrometia = Somatometria::find()->where(['paciente_id' => $model->id])->one();
 
             $consultas = Consulta::find()->where(['paciente_id' => $model->id])->all();
 

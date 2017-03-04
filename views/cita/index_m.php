@@ -40,7 +40,7 @@ if(Citas::find()->where(['medico_id' => $medico->id ])->one() != null){
 
                 <div class="col-md-12 text-center">
                     <h3>
-                        <?= Html::a(Yii::t('app', 'Generar Cita'), ['/citas/create-m', 'id' => \Yii::$app->user->getId()], ['class' => 'btn btn-success']) ?>
+                        <?= Html::a(Yii::t('app', 'Generar Cita'), ['/cita/create-m', 'id' => \Yii::$app->user->getId()], ['class' => 'btn btn-success']) ?>
                     </h3>
                 </div>
             </div>
