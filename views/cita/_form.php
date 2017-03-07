@@ -2,7 +2,6 @@
 
 use app\models\Citas;
 use app\models\Paciente;
-use kartik\date\DatePicker;
 use messaging\shared\presenters\MaterialDesignPresenter;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -39,7 +38,7 @@ $meses = array(
 
 ?>
 
-<div class="citas-form">
+<div class="citas-form" ng-controller="MainController">
     <?php if(isset($model->dia)): ?> <span ng-init='dia = "<?= $model->dia ?>"'></span> <?php endif; ?>
     <?php $form = ActiveForm::begin(); ?>
 
@@ -53,6 +52,7 @@ $meses = array(
                 <?= $form->field($model, 'dia',
                     ['template' => MaterialDesignPresenter::getInputIconTemplate("fa-calendar")])->textInput([
                     'ng-model' => 'dia',
+                    'min-date'=>"minDate",
                     'uib-datepicker-popup' => 'dd/MM/yyyy',
                     'is-open' => 'popup.opened',
                     'ng-click' => 'open()',
@@ -61,7 +61,7 @@ $meses = array(
                 ]) ?>
             </div>
         </div>
-
+        <span ng-init="dia"></span>
         <div class="col-md-5">
             <?= $form->field($model, 'hora')->dropDownList(Citas::getHours()) ?>
         </div>
@@ -76,7 +76,7 @@ $meses = array(
                     <th>D</th>
                     <th>L</th>
                     <th>M</th>
-                    <th>M</th>
+                    <th>X</th>
                     <th>J</th>
                     <th>V</th>
                     <th>S</th>
@@ -91,11 +91,16 @@ $meses = array(
                                 <?php if ($k > $mes['duration']): ?>
                                     <td></td>
                                 <?php else: ?>
-                                    <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
+                                    <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>>
+                                        <a style="color:black;background: transparent;border: 0;width: auto;position: absolute;" disabled="<?= isset($mes['day']) && $k < $mes['day'] ?>" ng-click="dia = '<?= $k ."-". $mes["name"]."-".date("Y")?>'"><?= $k++ ?></a>
+                                    </td>
                                 <?php endif; ?>
                             <?php else: ?>
                                 <?php if ($j > $mes['inition']): ?>
-                                    <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
+                                    <td class="" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>>
+                                        <a style="color:black;background: transparent;border: 0;width: auto;position: absolute;" ><?= $k++ ?></a>
+<!--                                        --><?//= Html::a($k,[\yii\helpers\Url::base()], ['ng-click' => '', 'styele' => '', 'disabled' => 'disabled']) ?>
+                                    </td>
                                 <?php else: ?>
                                     <td></td>
                                 <?php endif; ?>
@@ -104,14 +109,14 @@ $meses = array(
                     </tr>
                     <?php endfor; ?>
                     <?php if ($k <= $mes['duration']): ?>
-                        <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
+                        <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
                     <?php endif; ?>
                 </tbody>
             </table>
         </div>
         <?php endforeach; ?>
     </div>
-
+    {{dia}}
 
     <div class="row ">
         <div class="form-group col-md-offset-5">

@@ -32,7 +32,6 @@ class Somatometria extends \yii\db\ActiveRecord
     {
         return [
             [['paciente_id', 'estatura', 'peso', 'temperatura', 'frecCardi'], 'required'],
-            [['estatura'], 'string'],
             [['paciente_id', 'peso', 'temperatura', 'frecCardi', 'menstruacion'], 'integer'],
             [['update_date', 'create_date'], 'safe'],
         ];
@@ -49,8 +48,8 @@ class Somatometria extends \yii\db\ActiveRecord
             'estatura' => Yii::t('app', 'Estatura'),
             'peso' => Yii::t('app', 'Peso'),
             'temperatura' => Yii::t('app', 'Temperatura'),
-            'frecCardi' => Yii::t('app', 'Frec Cardi'),
-            'menstruacion' => Yii::t('app', 'Menstruacion'),
+            'frecCardi' => Yii::t('app', 'Frecuencia cardíaca'),
+            'menstruacion' => Yii::t('app', 'Menstruación'),
         ];
     }
 }

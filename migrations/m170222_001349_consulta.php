@@ -11,6 +11,7 @@ class m170222_001349_consulta extends Migration
             'paciente_id' => $this->integer(11)->defaultValue(null),
             'medico_id' => $this->integer(11)->defaultValue(null),
             'cita_id' => $this->integer(11)->defaultValue(null),
+            'sintomas' => $this->text()->defaultValue(null),
             'create_date' => $this->dateTime()->notNull(),
             'update_date' => $this->dateTime()->defaultValue(null),
         ], 'ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1');

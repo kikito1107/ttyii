@@ -16,6 +16,9 @@ use Yii;
  */
 class Consulta extends \yii\db\ActiveRecord
 {
+    public $sintoma;
+
+    public $medicamento;
     /**
      * @inheritdoc
      */
@@ -32,6 +35,7 @@ class Consulta extends \yii\db\ActiveRecord
         return [
             [['paciente_id', 'medico_id', 'cita_id'], 'integer'],
             [['create_date'], 'required'],
+            [['sintomas'], 'string'],
             [['create_date', 'update_date'], 'safe'],
         ];
     }

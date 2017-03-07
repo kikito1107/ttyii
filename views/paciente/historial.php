@@ -16,15 +16,16 @@
                 <div class="col-md-12 red lighten-2 white-text">
                     <h5>Datos personales</h5>
                 </div>
+<!--                --><?//= var_dump($sometria->estatura);exit;?>
                 <div class="col-md-12">
                     <div class="col-md-4">
-                        <p> <b>Alergias: </b> <br><span ><?= $model->alergias?></span></p>
+                        <p> <b>Alergias: </b> <span ><?= $model->alergias?></span></p>
                     </div>
                     <div class="col-md-4">
-                        <p> <b>Estatura: </b> <br><span ><?= $model->alergias?></span></p>
-                        <p> <b>Peso: </b> <br><span ><?= $model->alergias?></span></p>
-                        <p> <b>Indice de masa corporal: </b> <br><span ><?= $model->alergias?></span></p>
-                        <p> <b>Frecuencia cardíaca: </b> <br><span ><?= $model->alergias?></span></p>
+                        <p> <b>Estatura: </b> <span ><?= $sometria->estatura?></span></p>
+                        <p> <b>Peso: </b> <span ><?= $sometria->peso?></span></p>
+                        <p> <b>Indice de masa corporal: </b> <span >{{<?= $sometria->peso/($sometria->estatura*$sometria->estatura)?> |number:2}}</span></p>
+                        <p> <b>Frecuencia cardíaca: </b> <span ><?= $sometria->frecCardi?></span></p>
                     </div>
                 </div>
             </div>
