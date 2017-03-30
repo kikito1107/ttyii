@@ -1,5 +1,9 @@
 <!--< ?= var_dump($paciente->getAnos());exit;?>-->
+<?php use app\models\Medico;
+use app\models\Somatometria;
 
+$sometria = Somatometria::find()->where(['paciente_id' => $paciente->id])->one();
+$medico = Medico::find()->where(['id' => $paciente->medico_id])->one()?>
 <div class="contenedor" style="height: 100%">
 
     <div class="card">
@@ -16,40 +20,32 @@
                 <img src="../img/ipn.png" alt="Responsive image"  style="width: 80px; height: 100px">
             </div>
         </div>
-        &nbsp;
-        <div class="row" style="border: 1px solid black; border-radius: 5px; padding: 5px">
-            <p style="width: 20%; border-bottom: 1px solid grey; float: left">Fecha:  </p>
-            <p style="width: 25%; border-bottom: 1px solid grey; float: right">Folio: </p>
+        &nbsp;<div class="row" style="border: 1px solid black; border-radius: 5px; padding: 5px">
+            <p style="width: 40%; border-bottom: 1px solid grey; float: left">DR(A): <span class="text-capitalize"><?= $medico->getFullName()?></span></p>
+            <p style="width: 30%; border-bottom: 1px solid grey; float: right">Cédula: <?= $medico->cedula?></p>
+        </div>
+        <div class="row" style="border: 1px solid black; border-radius: 5px; padding: 5px;margin-top: 5px">
+            <p style="width: 20%; border-bottom: 1px solid grey; float: left">Fecha:  <?= date('d-M-Y')?></p>
+            <p style="width: 25%; border-bottom: 1px solid grey; float: right">Folio: <?= str_pad( $paciente->id, 5, "0", STR_PAD_LEFT );?></p>
             <p style="width: 40%; border-bottom: 1px solid grey; clear: both; float: left" class="text-capitalize">Nombre: <?= $paciente->getFullName()?></p>
             <p style="width: 15%; border-bottom: 1px solid grey; float: right">Edad: <?= $paciente->getAnos() ?> años</p>
-
+        </div>
+        <div class="row" style="border: 1px solid black; border-radius: 5px; padding: 5px;margin-top: 5px">
             <p style="width: 55%; border-bottom: 1px solid grey; clear:both; float: right">Dx: </p>
         </div>
 
-
-    <br>
-
-        <div class="row" style="padding: 5px; height: 69% ">
-
+        <br>
+        <div class="row" style="padding: 5px;">
             <div style="padding: 5px; width: 75%; height: 68%; float: left">
                 <p>Tx: </p>
             </div>
-
             <div style=" width: 20%; padding: 5px; float: right">
-                <p style=" border-bottom: 1px solid grey;  float: right">Peso: </p>
-                <p style=" border-bottom: 1px solid grey; clear:both; float: right">Temp: </p>
-                <p style=" border-bottom: 1px solid grey; clear:both; float: right">Talla: </p>
-                <p style=" border-bottom: 1px solid grey; clear:both; float: right">Fc: </p>
-
+                <p style=" border-bottom: 1px solid grey;  float: right">Peso: <?= $sometria->peso?> Kg</p>
+                <p style=" border-bottom: 1px solid grey; clear:both; float: right">Estatura: <?= $sometria->estatura?> m</p>
+                <p style=" border-bottom: 1px solid grey; clear:both; float: right">Temp: <?= $sometria->temperatura?> ºC</p>
+                <p style=" border-bottom: 1px solid grey; clear:both; float: right">Fc: <?= $sometria->frecCardi?></p>
             </div>
         </div>
-
-
-    <br>
-
-        <div class="row" style="border: 1px solid black; border-radius: 5px; padding: 5px">
-            <p style="width: 40%; border-bottom: 1px solid grey; float: left">DR(A): </p>
-            <p style="width: 30%; border-bottom: 1px solid grey; float: right">Cédula: </p>
-        </div>
+        <br>
     </div>
 </div>
