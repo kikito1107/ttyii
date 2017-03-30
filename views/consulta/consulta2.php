@@ -27,8 +27,8 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'paciente_id')->hiddenInput(['value' => $paciente->id])->label(false) ?>
         <div class="row">
             <div class="col-md-2">
-                <?= $form->field($model, 'peso')->textInput(['maxlength' => true, 'ng-model' => 'peso',]) ?>
-                <?= $form->field($model, 'estatura')->textInput(['maxlength' => true, 'ng-model' => 'estatura',]) ?>
+                <?= $form->field($model, 'peso')->textInput(['maxlength' => true, 'ng-model' => 'peso',])->label('Peso kg') ?>
+                <?= $form->field($model, 'estatura')->textInput(['maxlength' => true, 'ng-model' => 'estatura',])->label('Estatura m') ?>
             </div>
             <div class="col-md-2">
                 <b>índice de masa corporal (IMC)</b><br>
@@ -80,17 +80,17 @@ use yii\widgets\ActiveForm;
         <hr>
         <div class="row">
             <div class="col-md-2">
-                <?= $form->field($model, 'temperatura')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'temperatura')->textInput(['maxlength' => true])->label('Temperatura ºC') ?>
             </div>
             <div class="col-md-2">
-                <?= $form->field($model, 'frecCardi')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'frecCardi')->textInput(['maxlength' => true])->label('Frecuencia cardíaca fc') ?>
             </div>
             <div class="col-md-2" ng-show=" 2 == '<?= $paciente->genero ?>'">
                 <?= $form->field($model, 'menstruacion')->radioList([1 =>'Si', 2=>'No'],['maxlength' => true]) ?>
             </div>
             <div >
-                <?= $form->field($model, 'paciente_id')->hiddenInput(['value' => $paciente->id]) ?>
-                <?= $form->field($model, 'medico_id')->hiddenInput(['value' => $paciente->medico_id]) ?>
+                <?= $form->field($model, 'paciente_id')->hiddenInput(['value' => $paciente->id])->label(false) ?>
+                <?= $form->field($model, 'medico_id')->hiddenInput(['value' => $paciente->medico_id])->label(false) ?>
             </div>
         </div>
         <div class="row text-center">

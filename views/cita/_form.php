@@ -66,57 +66,57 @@ $meses = array(
             <?= $form->field($model, 'hora')->dropDownList(Citas::getHours()) ?>
         </div>
     </div>
-    <div class="row">
-        <?php foreach ($meses as $mes): ?>
-        <div class="col-md-4">
-            <table class="table table-bordered">
-                <thead>
-                <tr class="blue darken-1"><th class="white-text text-center" colspan="7"><?= $mes['name']?></th></tr>
-                <tr>
-                    <th>D</th>
-                    <th>L</th>
-                    <th>M</th>
-                    <th>X</th>
-                    <th>J</th>
-                    <th>V</th>
-                    <th>S</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php $k = 1; ?>
-                    <?php for ($i = 1; $i <= 5; $i++): ?>
-                    <tr>
-                        <?php for ($j = 1; $j <= 7; $j++): ?>
-                            <?php if ($k != 1): ?>
-                                <?php if ($k > $mes['duration']): ?>
-                                    <td></td>
-                                <?php else: ?>
-                                    <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>>
-                                        <a style="color:black;background: transparent;border: 0;width: auto;position: absolute;" disabled="<?= isset($mes['day']) && $k < $mes['day'] ?>" ng-click="dia = '<?= $k ."-". $mes["name"]."-".date("Y")?>'"><?= $k++ ?></a>
-                                    </td>
-                                <?php endif; ?>
-                            <?php else: ?>
-                                <?php if ($j > $mes['inition']): ?>
-                                    <td class="" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>>
-                                        <a style="color:black;background: transparent;border: 0;width: auto;position: absolute;" ><?= $k++ ?></a>
-<!--                                        --><?//= Html::a($k,[\yii\helpers\Url::base()], ['ng-click' => '', 'styele' => '', 'disabled' => 'disabled']) ?>
-                                    </td>
-                                <?php else: ?>
-                                    <td></td>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </tr>
-                    <?php endfor; ?>
-                    <?php if ($k <= $mes['duration']): ?>
-                        <td class="td-corrida" <?= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?>><?= $k++ ?></td>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-        <?php endforeach; ?>
-    </div>
-    {{dia}}
+<!--    <div class="row">-->
+<!--        --><?php //foreach ($meses as $mes): ?>
+<!--        <div class="col-md-4">-->
+<!--            <table class="table table-bordered">-->
+<!--                <thead>-->
+<!--                <tr class="blue darken-1"><th class="white-text text-center" colspan="7">--><?//= $mes['name']?><!--</th></tr>-->
+<!--                <tr>-->
+<!--                    <th>D</th>-->
+<!--                    <th>L</th>-->
+<!--                    <th>M</th>-->
+<!--                    <th>X</th>-->
+<!--                    <th>J</th>-->
+<!--                    <th>V</th>-->
+<!--                    <th>S</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    --><?php //$k = 1; ?>
+<!--                    --><?php //for ($i = 1; $i <= 5; $i++): ?>
+<!--                    <tr>-->
+<!--                        --><?php //for ($j = 1; $j <= 7; $j++): ?>
+<!--                            --><?php //if ($k != 1): ?>
+<!--                                --><?php //if ($k > $mes['duration']): ?>
+<!--                                    <td></td>-->
+<!--                                --><?php //else: ?>
+<!--                                    <td class="td-corrida" --><?//= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?><!-->-->
+<!--                                        <a style="color:black;background: transparent;border: 0;width: auto;position: absolute;" disabled="--><?//= isset($mes['day']) && $k < $mes['day'] ?><!--" ng-click="dia = '--><?//= $k ."-". $mes["name"]."-".date("Y")?><!--'">--><?//= $k++ ?><!--</a>-->
+<!--                                    </td>-->
+<!--                                --><?php //endif; ?>
+<!--                            --><?php //else: ?>
+<!--                                --><?php //if ($j > $mes['inition']): ?>
+<!--                                    <td class="" --><?//= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?><!-->-->
+<!--                                        <a style="color:black;background: transparent;border: 0;width: auto;position: absolute;" >--><?//= $k++ ?><!--</a>-->
+<!--<!--                                        -->--><?////= Html::a($k,[\yii\helpers\Url::base()], ['ng-click' => '', 'styele' => '', 'disabled' => 'disabled']) ?>
+<!--                                    </td>-->
+<!--                                --><?php //else: ?>
+<!--                                    <td></td>-->
+<!--                                --><?php //endif; ?>
+<!--                            --><?php //endif; ?>
+<!--                        --><?php //endfor; ?>
+<!--                    </tr>-->
+<!--                    --><?php //endfor; ?>
+<!--                    --><?php //if ($k <= $mes['duration']): ?>
+<!--                        <td class="td-corrida" --><?//= isset($mes['day']) && $mes['day'] == $k ? 'style="color: white !important;font-weight: 700;background: #009688;text-align: center;"': 'styele=""' ?><!-->--><?//= $k++ ?><!--</td>-->
+<!--                    --><?php //endif; ?>
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        --><?php //endforeach; ?>
+<!--    </div>-->
+<!--    {{dia}}-->
 
     <div class="row ">
         <div class="form-group col-md-offset-5">

@@ -126,7 +126,39 @@ $medicamentos = Medicamento::find()->all();
             </div>
         </div>
         <div class="row" ng-show="experta == true">
-            experta
+            <div class="col-md-12">
+                La repertorización tomará los síntomas proporcionados, para realizar de manera más optima la busqueda de
+                medicamentos, y así hacer la tabla correspondiente a la repertorización adicional este te dara datos
+                adiconales para poder tomar una mejor desición con respectos a otrso tratamientos que presentes atributos similares.
+                <br>
+                Siempre tomando en cuenta que la desición del médico es primero.
+            </div>
+            <div class="col-md-12">
+                <h6>Agregar nuevos síntomas </h6>
+                <div class="col-md-10">
+                    <?= $form->field($model, 'sintoma')->dropDownList(ArrayHelper::map(Sintoma::find()->asArray()->all(), 'id', 'nombre'), [
+                        'prompt' => Yii::t( 'app', 'Seleccionar' ),
+                        'ng-model' =>'sintoma_exp'])->label('Síntomas') ?>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger mv " ng-disabled="!sintoma_exp" ng-click="setElementExp()"><?= Yii::t('app','Agregar')?></button>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                {{sintomasCollectionExp}}
+                <ol>
+                    <li ng-repeat="(index, exp) in sintomasCollectionExp">
+                        <?php foreach ($sintomas as $sintoma): ?>
+                            <p ng-show="exp.sintoma == '<?= $sintoma->id?>'"
+                            >
+                                <?= $sintoma->nombre ?>
+<!--                                <span class="glyphicon glyphicon-remove" ng-click="deleteCorrida(index)" style="margin-left: 10px;">-->
+                            </p>
+                        <?php endforeach; ?>
+                    </li>
+                </ol>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-1" ng-show="sintoma">
