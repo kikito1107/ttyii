@@ -35,7 +35,7 @@ use yii\web\UploadedFile;
  */
 class Medico extends \yii\db\ActiveRecord
 {
-    public $username;
+//    public $username;
 
     public $var;
     /**

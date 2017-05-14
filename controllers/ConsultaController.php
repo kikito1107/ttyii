@@ -35,6 +35,10 @@ class ConsultaController extends \yii\web\Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
     public function actionRepertorizacion($id)
     {
         $model = new Consulta();
