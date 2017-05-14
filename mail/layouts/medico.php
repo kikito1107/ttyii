@@ -5,11 +5,13 @@
  * Date: 16/02/17
  * Time: 00:32
  */
+use yii\helpers\Url;
+
 ?>
 <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
     <tr>
         <td bgcolor="#70bbd9" style="color: white; text-align: center">
-            <img src="http://sistemahomeopatico.local/img/heart.png" style="width: 200px;height: 200px">
+            <img src="<?= Url::base()?>/img/heart.png" style="width: 200px;height: 200px">
             <h2>Sistema homeopático</h2>
         </td>
     </tr>
@@ -25,7 +27,7 @@
             <p><b>Correo electrónico: </b> <?= $data['email'];?></p>
             <p><b>contraseña: </b> <?= $data['password']?></p>
             <p>
-                <?= '<a href="http://sistemahomeopatico.local/">Iniciar sesión</a>'?>
+               <a href="<?= Url::base()?>">Iniciar sesión</a>
             </p>
         </td>
     </tr>

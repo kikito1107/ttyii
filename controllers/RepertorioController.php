@@ -9,4 +9,9 @@ class RepertorioController extends \yii\web\Controller
         return $this->render('index');
     }
 
+    public function actionTradicional()
+    {
+        return $this->render('tradicional');
+    }
+
 }

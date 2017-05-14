@@ -35,9 +35,10 @@ use yii\web\UploadedFile;
  */
 class Medico extends \yii\db\ActiveRecord
 {
-//    public $username;
-
     public $var;
+
+    public $username;
+
     /**
      * @var UploadedFile $imageLicense
      */

@@ -22,7 +22,7 @@ use yii\helpers\Url;
                     <th>#</th>
                     <th>Nombre</th>
                     <th>NSS</th>
-                    <th>ultima cita</th>
+                    <th>Última cita</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -36,14 +36,15 @@ use yii\helpers\Url;
                             <?= $paciente->getFullName()?>
                         </td>
                         <td>
-                            <?= $paciente->nss?>
+                            <!--< ?= $paciente->nss ? >--> 12345678911
                         </td>
                         <td>
-                            <?= $paciente->nss?>
+                            <!--< ? = $paciente->nss?>--> 01-01-2017
                         </td>
                         <td>
-                            <?= Html::a(Yii::t('app', '<i class="fa fa-street-view"></i> Ver historial clinico'), ['history', 'id' => $paciente->id], ['class' => 'btn btn-primary'])?>
-                            <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Realizar consulta'), ['consulta/consulta2', 'id' => $paciente->id], ['class' => 'btn btn-danger'])?>
+                            <?= Html::a('<i class="fa fa-eye" aria-hidden="true"></i> Ver detalle',['paciente/view', 'id' => $paciente->id], ['class' => 'btn btn-xs btn-default mb-sm text-inverse'])?>
+                            <?= Html::a('<i class="fa fa-pencil" aria-hidden="true"></i> Actualizar', ['paciente/update', 'id'=> $paciente->id], ['class' => 'btn btn-xs btn-default mb-sm text-primary'])?>
+                            <?= Html::a('<i class="fa fa-times" aria-hidden="true"></i> Desactivar', ['paciente/activate', 'id' => $paciente->id], ['class' => 'btn btn-xs btn-default mb-sm text-danger'])?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

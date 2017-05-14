@@ -33,7 +33,11 @@ use yii\helpers\Url;
                     'attribute' => 'medico_id',
                     'value' => function ($model) {
                         $medico = Medico::find()->where(['id' => $model->medico_id])->one();
-                        return $medico->getFullName();
+                        if(!$medico){
+                            return "Aun no selecciona un médico.";
+                        } else {
+                            return $medico->getFullName;
+                        }
                     }
                 ],
 //                'update_date',

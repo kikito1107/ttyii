@@ -185,6 +185,14 @@ AppAsset::register($this);
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
+                        <!--AGREGADO PARA USO PRACTICO, PREGUNTAS-->
+                        <li>
+                            <a href="<?= Url::to(['/repertorio/tradicional']) ?>" class="ripple">
+                                <em class="fa fa-book"></em>
+                                <span><?= Yii::t('app', 'tradicional') ?></span>
+                                <span class="md-ripple"></span>
+                            </a>
+                        </li>
                     <?php else: ?>
 <!----------------------------------------------------ADMIN---------------------------------------------------->
                         <!--Layout de ADMIN-->
