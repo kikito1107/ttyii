@@ -8,7 +8,6 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PacienteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 ?>
 
 <div class="card">
@@ -19,7 +18,6 @@ use yii\helpers\Url;
 //            'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-
 //                'id',
                 [
                     'attribute' => 'nombre',
@@ -36,7 +34,7 @@ use yii\helpers\Url;
                         if(!$medico){
                             return "Aun no selecciona un médico.";
                         } else {
-                            return $medico->getFullName;
+                            return $medico->getFullName();
                         }
                     }
                 ],

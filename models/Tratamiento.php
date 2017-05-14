@@ -43,7 +43,7 @@ class Tratamiento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sintoma_id', 'medicamento_id', 'organo_padre_id', 'ponderacion', 'status', 'create_date'], 'required'],
+            [['sintoma_id', 'medicamento_id', 'ponderacion', 'status'], 'required'],
             [['sintoma_id', 'medicamento_id', 'organo_padre_id', 'ponderacion', 'status'], 'integer'],
             [['update_date', 'create_date'], 'safe'],
             [['descripcion'], 'string', 'max' => 50],
