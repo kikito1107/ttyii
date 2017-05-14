@@ -13,9 +13,7 @@ $medico = Medico::find()->where(['user_id'=>$id])->one();
 
     <?php if($medico != null): ?><!-- cuando es medico -->
         <div class="row">
-            <div class="col-md-3">
-                <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/organo/create-m']) ?>" role="button">Agregar órgano</a></p>
-            </div>
+
             <div class="col-md-3">
                 <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/sintoma/create-m']) ?>"  role="button">Agregar síntoma</a></p>
             </div>
@@ -29,9 +27,6 @@ $medico = Medico::find()->where(['user_id'=>$id])->one();
 
     <?php else:?><!-- cuando es administrador -->
         <div class="row">
-            <div class="col-md-3">
-                <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/organo/create']) ?>" role="button">Agregar órgano</a></p>
-            </div>
             <div class="col-md-3">
                 <p><a class="btn btn-primary btn-lg btn-block" href="<?= Url::to(['/sintoma/create']) ?>"  role="button">Agregar síntoma</a></p>
             </div>
