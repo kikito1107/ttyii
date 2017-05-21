@@ -94,6 +94,27 @@ class PacienteController extends Controller
         }
     }
 
+    public function actionPrerepertorizacion()
+    {
+        return $this->render('prerepertorizacion');
+    }
+
+    public function actionCuenta($id)
+    {
+        $model = $this->findModel($id);
+        return $this->render('config',[
+            'model' => $model
+        ]);
+    }
+
+    public function actionSelect()
+    {
+        $medicos = Medico::findAll(['status' => Medico::STATUS_ACTIVE]);
+        return $this->render('select_medico', [
+            'medicos' => $medicos,
+        ]);
+    }
+
     /**
      * Updates an existing Paciente model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -226,6 +247,24 @@ class PacienteController extends Controller
             return $this->redirect(['paciente', [
                 'id' => $model->medico_id
             ]]);
+        }
+    }
+
+    public function actionSelectmedico($id, $medico_id)
+    {
+        $medicos = Medico::findAll(['status' => Medico::STATUS_ACTIVE]);
+        $model = $this->findModel($id);
+        $model->setAttribute('medico_id', $medico_id);
+        $model->save();
+        if ($model->save()){
+            return $this->render('select_medico', [
+                'medicos' => $medicos,
+                'success' => 1001
+            ]);
+        } else {
+            return $this->render('select_medico', [
+                'medicos' => $medicos,
+            ]);
         }
     }
 }

@@ -109,9 +109,23 @@ AppAsset::register($this);
                             </a>
                         </li>
                         <li>
+                            <a href="<?= Url::to(['/paciente/select']) ?>" class="ripple">
+                                <em class="fa fa-user-md"></em>
+                                <span><?= Yii::t('app', 'Selección de médico') ?></span>
+                                <span class="md-ripple"></span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= Url::to(['/cita']) ?>" class="ripple">
                                 <em class="fa fa-calendar"></em>
                                 <span><?= Yii::t('app', 'Gestión de citas') ?></span>
+                                <span class="md-ripple"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= Url::to(['/paciente/prerepertorizacion']) ?>" class="ripple">
+                                <em class="fa fa-list-alt"></em>
+                                <span><?= Yii::t('app', 'Realizar pre diagnostico') ?></span>
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
@@ -122,7 +136,13 @@ AppAsset::register($this);
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="<?= Url::to(['/paciente/cuenta', 'id' => $paciente->id]) ?>" class="ripple">
+                                <em class="fa fa-user-md"></em>
+                                <span><?= Yii::t('app', 'Configuración de la cuenta') ?></span>
+                                <span class="md-ripple"></span>
+                            </a>
+                        </li>
 <!-----------------------------------MEDICO---------------------------------------------------------------------------->
                     <?php elseif (Medico::find()->where(['user_id' =>$id])->one() != null): ?>
                         <?php $medico = Medico::find()->where(['user_id' =>$id])->one();?>
@@ -193,14 +213,23 @@ AppAsset::register($this);
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= Url::to(['/medico/cuenta', 'id' => $medico->id]) ?>" class="ripple">
+                                <em class="fa fa-user-md"></em>
+                                <span><?= Yii::t('app', 'Configuración de la cuenta') ?></span>
+                                <span class="md-ripple"></span>
+                            </a>
+                        </li>
+
                     <?php else: ?>
+
 <!----------------------------------------------------ADMIN---------------------------------------------------->
                         <!--Layout de ADMIN-->
                         <li><strong><p class="text-center">Administrador</p></strong></li>
                         <li>
                             <a href="<?= Url::to(['/auth/profile/view']) ?>" class="ripple">
                                 <em class="fa fa-medkit"></em>
-                                <span><?= Yii::t('app', 'Administración') ?></span>
+                                <span><?= Yii::t('app', 'Cuenta') ?></span>
                                 <span class="md-ripple"></span>
                             </a>
                         </li>
@@ -254,8 +283,10 @@ AppAsset::register($this);
     </main>
     <footer class=" blue-grey darken-2" style="position:fixed;bottom:0px;left:0px;right:0px;margin-bottom:0px;">
         <div class="container white-text">
-            <div class="col-md-5">
-                <p> Desarrollado por <a class="orange-text text-lighten-3" href="">Alumnos de la Escuela Superior de Cómputo</a></p>
+            <div class="col-md-12">
+                <p class="pull-left">
+                    Desarrollado por <label class="orange-text text-lighten-3">Alumnos de la Escuela Superior de Cómputo</label>
+                </p><label class="pull-right"><?= date('d-M-Y')?></label>
             </div>
         </div>
     </footer>

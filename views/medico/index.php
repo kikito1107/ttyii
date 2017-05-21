@@ -9,7 +9,6 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Listado de médicos');
-/**var_dump(sizeof($frase))**/
 ?>
 <div class="medico-index">
         <h4 class="m0 text-capitalize">
@@ -21,7 +20,6 @@ $this->title = Yii::t('app', 'Listado de médicos');
         <div class="card-body white">
             <p>
             </p>
-<!--            --><?//= var_dump($medicos)?>
             <table>
                 <thead>
                     <tr class="bg-primary">
@@ -32,15 +30,11 @@ $this->title = Yii::t('app', 'Listado de médicos');
                     <tr></tr>
                 </tbody>
             </table>
-<!--            --><?php //foreach (): ?>
-<!--            --><?php //endforeach; ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    //'id',
-                    //'user_id',
                     'username',
 //                    'paterno',
 //                    'materno',
@@ -54,33 +48,40 @@ $this->title = Yii::t('app', 'Listado de médicos');
                     //'image_Photo',
                     'status',
                     //'user_type',
-                    //'update_date',
-                    'create_date',
-//                    'cedula',
+                    //'update_date',xxt11¡`88
                     //'escuela',
 //                    'especialidad',
                     //'descripcion:ntext',
                 ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {status}',
+                'template' => '{view_users} {view} {status}',
                 'buttons' => [
-                    'view' => function ($url, $model) {
-                        return Html::a('<i class="fa fa-eye" aria-hidden="true"></i> Ver detalle',
-                            Url::to(['view', 'id' => $model->id]), [
+                    'view_users' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-eye" aria-hidden="true"></i> Datos de acceso',
+                            Url::to(['user', 'id' => $model->id]), [
                                 'data-pjax' => 0,
-                                'aria-label' => 'Ver detalle',
+                                'aria-label' => 'Ver detalles de acceso',
                                 'title' => 'Ver detalle',
                                 'class' => 'btn btn-xs btn-default mb-sm text-inverse'
                             ]);
                     },
-                    'update' => function ($url, $model) {
-                        return Html::a('<i class="fa fa-pencil" aria-hidden="true"></i> Actualizar',
-                            Url::to(['update', 'id' => $model->id]), [
+                    'view' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-eye" aria-hidden="true"></i> Datos del médico',
+                            Url::to(['view', 'id' => $model->id]), [
                                 'data-pjax' => 0,
-                                'aria-label' => 'Actualizar',
-                                'title' => 'Actualizar',
+                                'aria-label' => 'Ver detalle',
+                                'title' => 'Ver detalle',
                                 'class' => 'btn btn-xs btn-default mb-sm text-primary'
                             ]);
                     },
+//                    'update' => function ($url, $model) {
+//                        return Html::a('<i class="fa fa-pencil" aria-hidden="true"></i> Editar',
+//                            Url::to(['update', 'id' => $model->id]), [
+//                                'data-pjax' => 0,
+//                                'aria-label' => 'Actualizar',
+//                                'title' => 'Actualizar',
+//                                'class' => 'btn btn-xs btn-default mb-sm text-primary'
+//                            ]);
+//                    },
                     'status' => function ($url, $model) {
                         if($model->status == 1) {
                             return Html::a('<i class="fa fa-times" aria-hidden="true"></i> Desactivar',

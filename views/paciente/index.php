@@ -11,13 +11,15 @@ use yii\helpers\Url;
 ?>
 
 <div class="card">
+    <div class="col-md-12">
+        <h4>Listado de pacientes asignados</h4>
+        <hr>
+    </div>
     <div class="card-body">
-        <p></p>
+        <p>Nota - Recuerda que los pacientes que estan asignados a tu cargo te seleccionaron ellos, por lo cual en cualquier momento pueden cambiar de médico.</p>
+        <p>No se puede editar la información personal de un paciente</p>
         <table class="table table-bordered table-hover">
             <thead>
-                <tr class="bg-primary">
-                    <th colspan="5"><h4>Listado de pacientes asignados</h4></th>
-                </tr>
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>

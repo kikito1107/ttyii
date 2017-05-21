@@ -48,6 +48,7 @@ use yii\widgets\ActiveForm;
                         </div>
                         <div class="col-md-8">
                             <?php echo '<label>Fecha de nacimiento</label>';
+
                             echo DatePicker::widget([
                                 'name' => 'cumple',
                                 'model'=> 'cumple',

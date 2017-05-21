@@ -63,7 +63,7 @@ use yii\widgets\ActiveForm;
                             <div class="col-md-3">
                                 <?= $form->field($model, 'cumple')->textInput([
                                     'ng-model' => 'cumple',
-                                    'uib-datepicker-popup' => 'dd/MM/yyyy',
+                                    'uib-datepicker-popup' => 'dd-MM-yyyy',
                                     'is-open' => 'popup.opened',
                                     'ng-click' => 'open()',
                                     'close-text' => Yii::t('app', 'Cerrar'),
@@ -113,57 +113,7 @@ use yii\widgets\ActiveForm;
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Información medica</h5>
-                        </div>
-                        <div class="col-md-12">
-                            &nbsp;
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'nss')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'notificaciones')->textInput(['maxlength' => true]) ?>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'alergias')->textInput(['maxlength' => true]) ?>
-                            </div>
-                            <div class="col-md-4">
-                                <p> <b>Estatura: </b> <br><span ><?= $model->alergias?></span></p>
-                                <p> <b>Peso: </b> <br><span ><?= $model->alergias?></span></p>
-                                <p> <b>Indice de masa corporal: </b> <br><span ><?= $model->alergias?></span></p>
-                                <p> <b>Frecuencia cardíaca: </b> <br><span ><?= $model->alergias?></span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Médico de cabecera</h5>
-                        </div>
-
-                        <div class="col-md-12">
-                            <p>
-                                <?= $form->field($model,'medico_id')
-                                    ->dropDownList(ArrayHelper::map(Medico::find()->asArray()->all(), 'id', 'nombre'), [
-                                        'prompt' => Yii::t( 'app', 'Seleccionar' ),
-                                        'ng-model' => 'medico_id'
-                                    ])?>
-                            </p>
-                        </div>
-                        <div class="col-md-12 text-ceter">
-                            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear cita') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-danger']) ?>
-                            <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-danger pull-right']) ?>
-                        </div>
-                    </div>
+                        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear cita') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-danger']) ?>
                 </div>
             </div>
         </div>

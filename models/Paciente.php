@@ -2,10 +2,10 @@
 
 namespace app\models;
 
+use Yii;
 use auth\models\User;
 use messaging\shared\helpers\Dates;
 use yii\db\ActiveRecord;
-use Yii;
 use yii\web\UploadedFile;
 
 /**
@@ -137,12 +137,11 @@ class Paciente extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         $this->nombre = rtrim($this->nombre);
-
+        $this->cumple = Dates::convertSqlDate($this->cumple);
+        $this->cumple = date("Y-m-d", strtotime(str_replace('/','-',$this->cumple)));
         if(parent::beforeSave($insert)){
             $now = date('Y-m-d');
             if ($this->isNewRecord) {
-                $date = Dates::convertSqlDate($this->cumple);
-                $this->cumple = $date;
                 $this->create_date = $now;
                 $this->status = $this::STATUS_INACTIVE;
                 $this->user_type = 3;
@@ -165,6 +164,7 @@ class Paciente extends \yii\db\ActiveRecord
                 $email->send();
 
             }else{
+
                 $this->update_date = $now;
             }
             return true;
@@ -232,18 +232,6 @@ class Paciente extends \yii\db\ActiveRecord
         }
 
         return $role;
-    }
-
-    /**
-     * Convierte una fecha en formato para guardar en mysql Y-m-d
-     * @param $date
-     * @return mixed
-     */
-    public static function convertSqlDate($date)
-    {
-        $time = strtotime($date);
-        $newDate = date('Y-m-d', $time);
-        return $newDate;
     }
 
     /**

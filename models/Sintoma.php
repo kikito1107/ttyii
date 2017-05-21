@@ -57,8 +57,8 @@ class Sintoma extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'nombre' => Yii::t('app', 'Nombre'),
-            'organo' => Yii::t('app', 'Organo'),
-            'organo_padre' => Yii::t('app', 'Organo Padre'),
+            'organo' => Yii::t('app', 'Órgano'),
+            'organo_padre' => Yii::t('app', 'Órgano Padre'),
             'status' => Yii::t('app', 'status'),
             'descripcion' => Yii::t('app', 'Descripcion'),
             'update_date' => Yii::t('app', 'Update Date'),

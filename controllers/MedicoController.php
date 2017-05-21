@@ -59,6 +59,17 @@ class MedicoController extends Controller
     }
 
     /**
+     * @param $id
+     * @return string
+     */
+    public function actionUser($id)
+    {
+        return $this->render('view_a', [
+            'model' => $this->findModel($id)
+        ]);
+    }
+
+    /**
      * Displays a single Medico model.
      * @param integer $id
      * @return mixed
@@ -153,5 +164,13 @@ class MedicoController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionCuenta($id)
+    {
+        $model = $this->findModel($id);
+        return $this->render('config',[
+            'model' => $model
+        ]);
     }
 }

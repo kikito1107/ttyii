@@ -15,23 +15,33 @@ $this->title = $model->getFullName();
 ?>
 <div class="paciente-view">
     <div class="card">
-        <div class="card-heading text-capitalize blue darken-3">
+        <div class="card-heading blue darken-3">
             <h5 class="white-text" style="margin: 3px 0" >
-                Información del Paciente
+                Información básica
                 <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-danger pull-right']) ?>
             </h5>
         </div>
         <div class="card-body">
             <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        Recuerda siempre mantener actualizada toda tu información, es nuestro medio de comunicación al igual
+                        que es el medio donde recibes todas las notificaciones.
+                    </p>
+                    <p class="red-text">Tu información esta segura en todo momento.</p>
+
+                </div>
+            </div>
+            <div class="row">
 
                 <div class="col-md-3">
                     <?php if($model->image_Photo != null && $model->image_Photo !== ""):?>
-                        <img src="<?= Url::base().'/img/homeo.png'?>" class="img-circle">
+                        <img src="<?= Url::base().'/img/homeo.png'?>" class="img-circle img-responsive">
                     <?php else:?>
                         <?php if($model->genero == 1):?>
-                            <img src="<?= Url::base().'/img/men.png'?>" class="img-circle">
+                            <img src="<?= Url::base().'/img/men.png'?>" class="img-circle img-responsive">
                         <?php else:?>
-                            <img src="<?= Url::base().'/img/woman.png'?>" class="img-circle">
+                            <img src="<?= Url::base().'/img/woman.png'?>" class="img-circle img-responsive">
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
@@ -41,6 +51,7 @@ $this->title = $model->getFullName();
                         <div class="col-md-12 ">
                             <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Datos personales</h5>
                         </div>
+
                         <div class="col-md-12">
                             &nbsp;
                         </div>
@@ -97,56 +108,56 @@ $this->title = $model->getFullName();
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Información medica</h5>
-                        </div>
-                        <div class="col-md-12">
-                            &nbsp;
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <p> <b>Número de seguridad social: </b> <br><span ><?= $model->nss?></span></p>
-                            </div>
-                            <div class="col-md-4">
-                                <p> <b>Folio de expediente: </b> <br><span ><?= $model->notificaciones?></span></p>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <p> <b>Alergias: </b> <br><span ><?= $model->alergias?></span></p>
-                            </div>
-                            <div class="col-md-4">
-                                <p> <b>Estatura: </b> <br><span ><?= $model->alergias?></span></p>
-                                <p> <b>Peso: </b> <br><span ><?= $model->alergias?></span></p>
-                                <p> <b>Indice de masa corporal: </b> <br><span ><?= $model->alergias?></span></p>
-                                <p> <b>Frecuencia cardíaca: </b> <br><span ><?= $model->alergias?></span></p>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                            <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Información medica</h5>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            &nbsp;-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            <div class="col-md-4">-->
+<!--                                <p> <b>Número de seguridad social: </b> <br><span >--><?//= $model->nss?><!--</span></p>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-4">-->
+<!--                                <p> <b>Folio de expediente: </b> <br><span >--><?//= $model->notificaciones?><!--</span></p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            <hr>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            <div class="col-md-4">-->
+<!--                                <p> <b>Alergias: </b> <br><span >--><?//= $model->alergias?><!--</span></p>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-4">-->
+<!--                                <p> <b>Estatura: </b> <br><span >--><?//= $model->alergias?><!--</span></p>-->
+<!--                                <p> <b>Peso: </b> <br><span >--><?//= $model->alergias?><!--</span></p>-->
+<!--                                <p> <b>Indice de masa corporal: </b> <br><span >--><?//= $model->alergias?><!--</span></p>-->
+<!--                                <p> <b>Frecuencia cardíaca: </b> <br><span >--><?//= $model->alergias?><!--</span></p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Médico de cabecera</h5>
-                        </div>
-                        <div class="col-md-12">
-                            &nbsp;
-                        </div>
-                        <div class="col-md-12">
-                            <p>
-                                <b>Nombre: </b>
-                                <br>
-                                <?php if($model->medico_id == null): ?>
-                                    <span>Debes de seleccionar a un médico</span>
-                                <?php else: ?>
-                                    <span class="text-capitalize"><?= Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?></span>
-                                <?php endif; ?>
-                            </p>
-                        </div>
-                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-12 ">-->
+<!--                            <h5 style="margin: 10px 0;" class="blue-text text-darken-3">Médico de cabecera</h5>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            &nbsp;-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            <p>-->
+<!--                                <b>Nombre: </b>-->
+<!--                                <br>-->
+<!--                                --><?php //if($model->medico_id == null): ?>
+<!--                                    <span>Debes de seleccionar a un médico</span>-->
+<!--                                --><?php //else: ?>
+<!--                                    <span class="text-capitalize">--><?//= Medico::find()->where(['id' => $model->medico_id])->one()->getFullName();?><!--</span>-->
+<!--                                --><?php //endif; ?>
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>

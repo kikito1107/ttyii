@@ -1,41 +1,35 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Medicamento */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Medicamentos'), 'url' => ['index']];
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="medicamento-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="card">
+    <div class="col-md-12">
+        <h5>Medicamento agregado de manera exitosa</h5>
+        <hr>
+    </div>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nombre',
-            'abreviatura',
-            'status',
-            'descripcion',
-            'update_date',
-            'create_date',
-        ],
-    ]) ?>
-
+    <div class="card-body">
+        <p>
+            Muchas gracias por tu aportación al repertorio, se validara por el administrador para así poder hacer uso de
+            esta información en futuras repertorizaciones.
+            <br>
+            El medicamento agregado fue: <b class="text-capitalize"><?= $this->title ?> -- <?= $model->abreviatura?> </b>
+        </p>
+        <p class="red-text">Se generó una notificación a las <b><?= $model->create_date ?></b> que será atendida a la brevedad. </p>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <img src="<?= Url::home()?>img/img-validacion.png" class="img-responsive img-rounded">
+            </div>
+        </div>
+    </div>
 </div>
+

@@ -37,8 +37,6 @@ class Medico extends \yii\db\ActiveRecord
 {
     public $var;
 
-    public $username;
-
     /**
      * @var UploadedFile $imageLicense
      */
